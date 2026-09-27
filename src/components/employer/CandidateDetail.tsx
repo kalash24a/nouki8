@@ -15,6 +15,8 @@ import { Meter } from "../ui/Meter";
 import { MatchRing } from "../ui/Motion";
 import { Badge, Card, Check, Rec } from "../ui/Rec";
 import { QualificationPanel } from "./QualificationPanel";
+import { WorkRightsPanel } from "./WorkRightsPanel";
+import { workRightsFor } from "@/lib/engine/workRights";
 
 export function CandidateDetail({ candidate, passport, result, job }: { candidate: Candidate; passport: Passport; result: MatchResult; job: Job }) {
   const { attempts, revealed } = useAppState();
@@ -145,9 +147,14 @@ export function CandidateDetail({ candidate, passport, result, job }: { candidat
         </div>
       </div>
 
-      <section className="mt-8 border-t pt-6">
-        <QualificationPanel q={qualificationFor(candidate.id)} revealed={isRevealed} />
-      </section>
+      <div className="mt-8 grid gap-8 border-t pt-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+        <section>
+          <QualificationPanel q={qualificationFor(candidate.id)} revealed={isRevealed} />
+        </section>
+        <section className="xl:border-l xl:pl-8">
+          <WorkRightsPanel rights={workRightsFor(candidate.id)} revealed={isRevealed} />
+        </section>
+      </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t pt-5">
         <ButtonLink variant="secondary" href={`/work-sample/${candidate.id}?job=${job.id}`} transitionTypes={["nav-forward"]}>

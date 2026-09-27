@@ -1,5 +1,6 @@
 import { GPA_POINTS, type AuGrade, type Qualification } from "./qualifications";
 import type { MatchResult } from "./types";
+import { passesRights, RIGHTS, type RightsFilter, type WorkRights } from "./workRights";
 
 export type Filters = {
   minScore: number;
@@ -9,11 +10,12 @@ export type Filters = {
   minGrade: AuGrade | null;
   defendedOnly: boolean;
   trustedOnly: boolean;
+  workRights: RightsFilter;
 };
 
-export const NO_FILTERS: Filters = { minScore: 0, maxGaps: null, mustMeet: [], minAqf: null, minGrade: null, defendedOnly: false, trustedOnly: false };
+export const NO_FILTERS: Filters = { minScore: 0, maxGaps: null, mustMeet: [], minAqf: null, minGrade: null, defendedOnly: false, trustedOnly: false, workRights: "any" };
 
-export type PoolRow = { result: MatchResult; qualification: Qualification | null; defended: boolean };
+export type PoolRow = { result: MatchResult; qualification: Qualification | null; defended: boolean; rights?: WorkRights | null };
 
 const TRUSTED = new Set(["Strong", "Moderate"]);
 
@@ -39,6 +41,7 @@ export function reasonsOut(row: PoolRow, f: Filters): string[] {
   }
   if (f.defendedOnly && !row.defended) out.push("no defended work sample");
   if (f.trustedOnly && trustedShare(r) < 0.5) out.push("mostly weak or claimed evidence");
+  if (f.workRights !== "any" && !passesRights(row.rights ?? null, f.workRights)) out.push(row.rights ? `work rights: ${RIGHTS[row.rights.category].short.toLowerCase()}` : "work rights not declared");
   return out;
 }
 
@@ -63,6 +66,7 @@ export function activeFilters(f: Filters, jobTasks: string[]): number {
     f.minGrade !== null,
     f.defendedOnly,
     f.trustedOnly,
+    f.workRights !== "any",
   ].filter(Boolean).length;
 }
 

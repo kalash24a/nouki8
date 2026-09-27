@@ -5,6 +5,7 @@ import { taskShort } from "@/lib/engine/data";
 import { NO_FILTERS, type Filters } from "@/lib/engine/filters";
 import { parsePosting, postedJob, SAMPLE_POSTING } from "@/lib/engine/posting";
 import { AQF } from "@/lib/engine/qualifications";
+import { RIGHTS_FILTER_LABEL } from "@/lib/engine/workRights";
 import { LEVEL_LABEL, type Requirement } from "@/lib/engine/types";
 import type { PostedJob } from "@/lib/store";
 import { cn } from "@/lib/cn";
@@ -45,6 +46,7 @@ export function PostJobPanel({ onSave, onClose, countFor, total }: {
   const [overrides, setOverrides] = useState<Requirement[] | null>(null);
   const [editing, setEditing] = useState(false);
   const [useAqf, setUseAqf] = useState(true);
+  const [useRights, setUseRights] = useState(true);
   const [useMust, setUseMust] = useState<boolean | null>(null);
 
   const parsed = useMemo(() => parsePosting(text, title), [text, title]);
@@ -55,6 +57,7 @@ export function PostJobPanel({ onSave, onClose, countFor, total }: {
     ...NO_FILTERS,
     minAqf: useAqf && parsed.min_aqf ? parsed.min_aqf : null,
     mustMeet: withMust ? must : [],
+    workRights: useRights ? parsed.work_rights : "any",
   });
   const mustDefault = must.length > 0 && countFor(requirements, buildFilters(true)) > 0;
   const mustOn = useMust ?? mustDefault;
@@ -197,6 +200,16 @@ export function PostJobPanel({ onSave, onClose, countFor, total }: {
             ) : (
               <p className="text-xs text-foreground-muted">No required qualification found in the ad.</p>
             )}
+            {parsed.work_rights !== "any" && (
+              <label className="flex items-start gap-2">
+                <input type="checkbox" checked={useRights} onChange={(e) => setUseRights(e.target.checked)} className="mt-1 h-4 w-4 accent-[var(--color-primary)]" />
+                <span>
+                  Right to work: {RIGHTS_FILTER_LABEL[parsed.work_rights]}
+                  <span className="block text-xs text-foreground-muted">from “{parsed.rights_cue}”</span>
+                </span>
+              </label>
+            )}
+            {parsed.sponsorship_offered && <p className="text-xs text-positive">The ad offers visa sponsorship, so candidates who need it stay in.</p>}
             {must.length > 0 && (
               <label className="flex items-start gap-2">
                 <input type="checkbox" checked={mustOn} onChange={(e) => setUseMust(e.target.checked)} className="mt-1 h-4 w-4 accent-[var(--color-primary)]" />

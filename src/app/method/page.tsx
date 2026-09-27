@@ -21,6 +21,7 @@ const LIMITS = [
   "The Australian Skills Classification was decommissioned, so tasks come from OSCA. The National Skills Taxonomy is the upgrade path.",
   "Grade conversion lines up pass marks but not how strictly each system marks. Some systems rarely award marks above 80, so their grades may read lower here than they deserve.",
   "The AQF level is an indicative comparison entered with the transcript, not a formal assessment. Assessing authorities can rate the same overseas degree differently.",
+  "Work rights here are fictional sample data, and the prototype doesn't connect to VEVO. ‘VEVO-checked’ marks what a real check would record.",
 ];
 
 export default function MethodPage() {
@@ -77,7 +78,15 @@ export default function MethodPage() {
         </ul>
       </Section>
 
-      <Section title="6 · Evaluation, recomputed at every build">
+      <Section title="6 · Right to work">
+        <ul className="list-disc space-y-1.5 pl-5">
+          <li>Employers have to confirm a worker can legally work in Australia. Registered organisations can check visa conditions in the Home Affairs VEVO system, with the visa holder&apos;s permission.</li>
+          <li><strong>Blind until forward</strong>: the shortlist shows only a category (unrestricted, full work rights on a temporary visa, limited hours, or needs employer sponsorship) and whether it was VEVO-checked or self-declared. The visa type appears after the employer moves someone forward.</li>
+          <li>Work rights can be filtered on and are read from job ads (&ldquo;no sponsorship&rdquo;, &ldquo;full working rights&rdquo;, &ldquo;citizens only&rdquo;), but they are never part of the match score. An ad that offers sponsorship keeps everyone in.</li>
+        </ul>
+      </Section>
+
+      <Section title="7 · Evaluation, recomputed at every build">
         <div className="grid gap-3 sm:grid-cols-2">
           <Fact k="Extraction precision" v={ev.precision.toFixed(2)} note={`${ev.extractor} extractor vs team-labelled gold data`} />
           <Fact k="Extraction recall" v={ev.recall.toFixed(2)} />

@@ -21,6 +21,8 @@ import { JobTabs } from "./JobTabs";
 import { CumulativeCurve, PoolRadar, RangeBullets } from "./PoolCharts";
 import { PostJobPanel } from "./PostJobPanel";
 import { CapIcon, GradeChip, qualificationLine } from "./QualificationPanel";
+import { RIGHTS_TONE, VisaIcon } from "./WorkRightsPanel";
+import { blindLine, RIGHTS, RIGHTS_ORDER, workRightsFor } from "@/lib/engine/workRights";
 
 const SERIES = ["bg-series-1", "bg-series-2", "bg-series-3", "bg-series-4", "bg-series-5", "bg-series-6", "bg-series-7"];
 
@@ -87,7 +89,12 @@ export function EmployerDashboard({ initialJob, initialPost = false }: { initial
 
   const defended = useMemo(() => new Set(candidates.filter((c) => countingAttempt(attempts, c.id)?.review?.defended).map((c) => c.id)), [attempts]);
   const toRows = (results: MatchResult[]): PoolRow[] =>
-    results.map((result) => ({ result, qualification: qualificationFor(result.candidate_id), defended: defended.has(result.candidate_id) }));
+    results.map((result) => ({
+      result,
+      qualification: qualificationFor(result.candidate_id),
+      defended: defended.has(result.candidate_id),
+      rights: workRightsFor(result.candidate_id),
+    }));
 
   const all = useMemo(() => rank(job, [...passports.values()]), [job, passports]);
   const rows = toRows(all);
@@ -246,7 +253,7 @@ export function EmployerDashboard({ initialJob, initialPost = false }: { initial
                 </Card>
               </div>
 
-              <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
+              <div className="grid gap-6 md:grid-cols-2">
                 <Card className="min-w-0 p-5 sm:p-7">
                   <ChartHead title="Hiring pipeline" note="From the whole pool to hire-ready now." />
                   <Funnel all={all} ranked={ranked} />
@@ -258,6 +265,10 @@ export function EmployerDashboard({ initialJob, initialPost = false }: { initial
                 <Card className="min-w-0 p-5 sm:p-7">
                   <ChartHead title="Qualifications in Australian terms" note="GPA on the 7-point scale, from each transcript. Indicative, not a formal assessment." />
                   <Qualifications ranked={ranked} current={current.candidate_id} onPick={choose} />
+                </Card>
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="Right to work" note="Category only while the pool is blind. Shown, not scored." />
+                  <RightsChart ranked={ranked} />
                 </Card>
               </div>
             </>
@@ -436,6 +447,9 @@ function FocusSummary({ result, jobId }: { result: MatchResult; jobId: string })
         <p className="font-medium">Candidate {result.candidate_id} · meets {result.met} of {result.total}</p>
         <p className="mt-0.5 flex items-center gap-1.5 text-foreground-muted">
           <CapIcon /> {qualificationLine(q)}
+        </p>
+        <p className="mt-0.5 flex items-center gap-1.5 text-foreground-muted">
+          <VisaIcon /> {blindLine(workRightsFor(result.candidate_id))}
         </p>
         <p className="mt-0.5 text-foreground-muted">
           {short.length ? <>To ask about: {short.map((r) => taskShort(r.task_id)).join(", ")}</> : "Meets every requirement."}
@@ -650,6 +664,39 @@ function Qualifications({ ranked, current, onPick }: { ranked: MatchResult[]; cu
           Candidate {current}: <GradeChip grade={qualificationFor(current)!.average} /> average, GPA {qualificationFor(current)!.gpa.toFixed(1)}
         </p>
       )}
+    </div>
+  );
+}
+
+function RightsChart({ ranked }: { ranked: MatchResult[] }) {
+  const rights = ranked.map((m) => workRightsFor(m.candidate_id));
+  const counts = RIGHTS_ORDER.map((c) => ({ c, n: rights.filter((r) => r?.category === c).length }));
+  const total = ranked.length || 1;
+  const verified = rights.filter((r) => r?.verified === "vevo").length;
+  const now = rights.filter((r) => r && r.category !== "sponsorship").length;
+  return (
+    <div className="mt-5">
+      <p className="text-sm">
+        <span className="num text-3xl font-medium"><CountUp value={now} /></span>
+        <span className="text-foreground-muted"> of {ranked.length} can start without sponsorship</span>
+      </p>
+      <div className="animate-grow mt-4 flex h-4 gap-px overflow-hidden rounded-xs" role="img" aria-label={counts.map(({ c, n }) => `${RIGHTS[c].label} ${n}`).join(", ")}>
+        {counts.map(({ c, n }) => (
+          <span key={c} className={cn("h-full transition-[width] duration-500", RIGHTS_TONE[c].fill)} style={{ width: `${(100 * n) / total}%` }} />
+        ))}
+      </div>
+      <ul className="mt-4 space-y-1.5 text-sm">
+        {counts.map(({ c, n }) => (
+          <li key={c} className="flex items-center gap-2">
+            <span aria-hidden="true" className={cn("h-2.5 w-2.5 rounded-xs", RIGHTS_TONE[c].fill)} />
+            <span>{RIGHTS[c].label}</span>
+            <span className="num ml-auto text-foreground-muted">{n}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-xs text-foreground-muted">
+        {verified} of {ranked.length} checked in VEVO with consent; the rest are self-declared. Confirm before any offer.
+      </p>
     </div>
   );
 }

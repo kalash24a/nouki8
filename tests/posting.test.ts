@@ -42,3 +42,25 @@ describe("choosing the sentence to show", () => {
     expect(src.C1).toContain("stakeholders");
   });
 });
+
+describe("work rights in the ad", () => {
+  it("turns 'no sponsorship' and 'citizens only' into filters, and leaves sponsorship-friendly ads alone", () => {
+    expect(parsePosting(SAMPLE_POSTING.text).work_rights).toBe("full_time");
+    expect(parsePosting("SQL analyst. We cannot offer visa sponsorship.").work_rights).toBe("no_sponsorship");
+    expect(parsePosting("SQL analyst. Open to Australian citizens only, baseline clearance needed.").work_rights).toBe("unrestricted");
+    const open = parsePosting("SQL analyst. Visa sponsorship is available for the right person.");
+    expect([open.work_rights, open.sponsorship_offered]).toEqual(["any", true]);
+  });
+});
+
+describe("work rights data", () => {
+  it("covers every candidate with a known category and a date", async () => {
+    const { candidates } = await import("@/lib/engine/data");
+    const { workRightsFor, RIGHTS } = await import("@/lib/engine/workRights");
+    for (const c of candidates) {
+      const w = workRightsFor(c.id)!;
+      expect(RIGHTS[w.category]).toBeDefined();
+      expect(w.as_of).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+});

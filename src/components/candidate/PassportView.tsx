@@ -14,6 +14,8 @@ import { Meter } from "../ui/Meter";
 import { CountUp } from "../ui/Motion";
 import { Badge, Card, Check, Rec } from "../ui/Rec";
 import { QualificationPanel } from "../employer/QualificationPanel";
+import { WorkRightsPanel } from "../employer/WorkRightsPanel";
+import { workRightsFor } from "@/lib/engine/workRights";
 
 const DOC_LABEL: Record<string, string> = { cv: "CV", reference: "Reference letter", transcript: "Transcript", project: "Project summary", work_sample: "Work sample" };
 
@@ -134,6 +136,9 @@ export function PassportView({ candidate }: { candidate: Candidate }) {
         <Card className="p-5">
           <QualificationPanel q={qualificationFor(candidate.id)} revealed audience="candidate" />
           <p className="mt-3 text-xs text-foreground-muted">Employers see the Australian grades only, until they move you forward.</p>
+        </Card>
+        <Card className="p-5">
+          <WorkRightsPanel rights={workRightsFor(candidate.id)} revealed audience="candidate" />
         </Card>
         <Card className="p-5">
           <Rec className="text-foreground-muted">Evidence tiers</Rec>

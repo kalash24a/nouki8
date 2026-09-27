@@ -7,7 +7,7 @@ React version of the Talent Bridge prototype (MentorME Futura Remix, Track 1). N
 ```bash
 npm install
 npm run dev            # http://localhost:3000
-npm run verify         # typecheck, lint, 36 tests, production build
+npm run verify         # typecheck, lint, 39 tests, production build
 ```
 
 Optional, to use Claude:
@@ -54,6 +54,10 @@ Recipes are in `src/app/globals.css`. View transitions need Chromium 125+, Safar
 ## Posting a job
 
 Paste a job ad on the dashboard and `src/lib/engine/posting.ts` maps it to the OSCA Data Analyst tasks using each task's keywords, sentence by sentence. The title and opening line set seniority (junior, mid or senior, which sets the base target level), words like "must" or "strong" raise the weight, "nice to have" or "familiarity" drop the target to Foundation and halve the weight, and a required degree becomes an AQF filter. Every requirement shows the sentence it came from, and the employer can adjust anything before posting. Posted jobs are saved in the browser and appear on the shortlist, dashboard, workforce and work-sample pages. It's rule-based on purpose: every requirement can be traced and checked.
+
+## Right to work
+
+Each candidate has a work-rights record (`src/data/work_rights.json`, fictional): unrestricted, full work rights on a temporary visa, limited hours, or needs employer sponsorship, plus whether it was VEVO-checked or self-declared. While the shortlist is blind the employer sees only the category, and the visa type after they move someone forward. It shows on the shortlist, candidate detail, passport and dashboard, can be filtered on, and is read from job ads. It is never part of the match score.
 
 ## Qualifications in Australian terms
 

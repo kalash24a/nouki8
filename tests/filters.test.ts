@@ -48,3 +48,15 @@ describe("employer filters", () => {
     for (let i = 1; i < c.length; i++) expect(c[i].count).toBeLessThanOrEqual(c[i - 1].count);
   });
 });
+
+describe("work rights", () => {
+  it("filters on work rights and says why", async () => {
+    const { workRightsFor } = await import("@/lib/engine/workRights");
+    const withRights = rows.map((r) => ({ ...r, rights: workRightsFor(r.result.candidate_id) }));
+    const none = applyFilters(withRights, { ...NO_FILTERS, workRights: "no_sponsorship" }, tasks);
+    expect(none.kept.map((k) => k.result.candidate_id).sort()).toEqual(["C03", "C04", "C05", "C06", "C07"]);
+    expect(none.excluded.find((e) => e.id === "C01")!.reasons).toContain("work rights: needs sponsorship");
+    const unrestricted = applyFilters(withRights, { ...NO_FILTERS, workRights: "unrestricted" }, tasks);
+    expect(unrestricted.kept.map((k) => k.result.candidate_id).sort()).toEqual(["C04", "C05", "C07"]);
+  });
+});

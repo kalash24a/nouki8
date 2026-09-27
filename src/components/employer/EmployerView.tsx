@@ -16,6 +16,8 @@ import { Badge, Card, Check, Rec } from "../ui/Rec";
 import { CandidateDetail } from "./CandidateDetail";
 import { FairnessPanel } from "./FairnessPanel";
 import { CapIcon, qualificationLine } from "./QualificationPanel";
+import { VisaIcon } from "./WorkRightsPanel";
+import { blindLine, workRightsFor } from "@/lib/engine/workRights";
 import { EmployerTabs } from "./EmployerDashboard";
 import { JobTabs } from "./JobTabs";
 import { RequirementsEditor } from "./RequirementsEditor";
@@ -115,6 +117,10 @@ export function EmployerView({ initialJob, initialCandidate }: { initialJob?: st
                           <p className="mt-1 flex items-center gap-1.5 text-xs text-foreground-muted">
                             <CapIcon />
                             {qualificationLine(qualificationFor(m.candidate_id))}
+                          </p>
+                          <p className="mt-0.5 flex items-center gap-1.5 text-xs text-foreground-muted">
+                            <VisaIcon />
+                            {blindLine(workRightsFor(m.candidate_id))}
                           </p>
                           {ws && (
                             <Badge tone={ws.review?.defended ? "positive" : "ochre"} className="mt-2">

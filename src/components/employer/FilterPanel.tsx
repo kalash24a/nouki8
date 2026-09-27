@@ -4,6 +4,7 @@ import { useState } from "react";
 import { taskLabel, taskShort } from "@/lib/engine/data";
 import type { Filters } from "@/lib/engine/filters";
 import type { AuGrade } from "@/lib/engine/qualifications";
+import type { RightsFilter } from "@/lib/engine/workRights";
 import { LEVEL_LABEL, type Job, type Requirement } from "@/lib/engine/types";
 import { cn } from "@/lib/cn";
 import { Button } from "../ui/Button";
@@ -97,6 +98,12 @@ export function FilterPanel({ job, filters, onChange, onReset, active, shown, to
         <Field label="Grade average">
           <Segmented<AuGrade | null> label="Grade average" value={filters.minGrade} onChange={(v) => onChange({ minGrade: v })} options={[
             { value: null, label: "Any" }, { value: "Pass", label: "P+" }, { value: "Credit", label: "C+" }, { value: "Distinction", label: "D+" }, { value: "High Distinction", label: "HD" },
+          ]} />
+        </Field>
+
+        <Field label="Right to work">
+          <Segmented<RightsFilter> label="Right to work" value={filters.workRights} onChange={(v) => onChange({ workRights: v })} options={[
+            { value: "any", label: "Any" }, { value: "no_sponsorship", label: "No sponsor" }, { value: "full_time", label: "Full-time now" }, { value: "unrestricted", label: "Unrestricted" },
           ]} />
         </Field>
 

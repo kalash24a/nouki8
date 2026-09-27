@@ -1,5 +1,6 @@
 import { taskList } from "./data";
 import type { Job, Level, Requirement } from "./types";
+import type { RightsFilter } from "./workRights";
 
 export type Seniority = "junior" | "mid" | "senior";
 export type RequirementSource = { task_id: string; keywords: string[]; sentence: string; cue: string };
@@ -11,7 +12,17 @@ export type ParsedPosting = {
   min_aqf: number | null;
   aqf_cue: string;
   years: number | null;
+  work_rights: RightsFilter;
+  rights_cue: string;
+  sponsorship_offered: boolean;
 };
+
+const RIGHTS_CUES: [RightsFilter, RegExp][] = [
+  ["unrestricted", /\b(australian citizens?|citizens? or permanent residents?|permanent residents? or citizens?|baseline (security )?clearance)\b/i],
+  ["full_time", /\b(full|unrestricted) (australian )?(work|working) rights\b/i],
+  ["no_sponsorship", /\b(no|not|unable to|cannot|can't) (offer |provide )?(visa )?sponsor(ship)?\b|\bright to work in australia\b|\bwithout (visa )?sponsorship\b/i],
+];
+const SPONSOR_OFFERED = /\b(visa sponsorship (is )?(available|offered)|will sponsor|sponsorship available|open to sponsor)/i;
 
 const SENIORITY: [Seniority, RegExp][] = [
   ["senior", /\b(senior|lead (data|analyst|business)|principal|head of)\b/i],
@@ -78,7 +89,21 @@ export function parsePosting(text: string, title = ""): ParsedPosting {
 
   const years = Number(text.match(/(\d{1,2})\s*\+?\s*(?:years|yrs)/i)?.[1] ?? NaN);
 
-  return { requirements, sources, seniority, seniority_cue, min_aqf, aqf_cue, years: Number.isFinite(years) ? years : null };
+  const sponsorship_offered = SPONSOR_OFFERED.test(text);
+  let work_rights: RightsFilter = "any";
+  let rights_cue = "";
+  if (!sponsorship_offered) {
+    for (const [f, re] of RIGHTS_CUES) {
+      const hitSentence = parts.find((s) => re.test(s));
+      if (hitSentence) {
+        work_rights = f;
+        rights_cue = hitSentence;
+        break;
+      }
+    }
+  }
+
+  return { requirements, sources, seniority, seniority_cue, min_aqf, aqf_cue, years: Number.isFinite(years) ? years : null, work_rights, rights_cue, sponsorship_offered };
 }
 
 export function postedJob(id: string, title: string, employer: string, text: string, requirements: Requirement[]): Job {
@@ -100,5 +125,6 @@ About you
 • Must have strong SQL and Python skills and proven experience validating data quality.
 • Comfortable working with stakeholders to turn their questions into analysis.
 • Familiarity with data privacy and governance is nice to have.
-• Bachelor degree in a quantitative field required. 2+ years of experience.`,
+• Bachelor degree in a quantitative field required. 2+ years of experience.
+• You must have full working rights in Australia. We are unable to offer visa sponsorship for this role.`,
 };
