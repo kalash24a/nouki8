@@ -1,0 +1,432 @@
+@import "tailwindcss";
+
+/* Three layers, as in the Ledger system this is adapted from.
+   Components reference layer 2 or 3 only, never a primitive or a raw hex. */
+
+/* Layer 1 — primitives. Burgundy and beige, with sage for "meets" and ochre for gaps. */
+:root {
+  --p-beige-25: #fdfaf4;
+  --p-beige-50: #f7f1e6;
+  --p-beige-100: #efe6d6;
+  --p-beige-200: #e5d8c2;
+  --p-beige-300: #dccdb3;
+  --p-beige-600: #8f7d62;
+
+  --p-ink-950: #23171a;
+  --p-ink-900: #33262a;
+  --p-ink-600: #5f5054;
+
+  --p-wine-50: #f7e9ec;
+  --p-wine-100: #ecd2d8;
+  --p-wine-300: #c98a97;
+  --p-wine-500: #9b2f47;
+  --p-wine-600: #7e1f36;
+  --p-wine-700: #6d1a2e;
+  --p-wine-900: #3d0c19;
+
+  --p-sage-50: #edf2e3;
+  --p-sage-100: #d7e2c4;
+  --p-sage-700: #3f5f22;
+
+  --p-ochre-50: #fbf0dc;
+  --p-ochre-100: #f3dfb9;
+  --p-ochre-500: #b0740f;
+  --p-ochre-700: #855607;
+
+  --p-red-50: #fbeceb;
+  --p-red-700: #b42318;
+
+  /* Dark theme primitives */
+  --p-night-950: #120c0e;
+  --p-night-900: #171012;
+  --p-night-800: #211719;
+  --p-night-700: #2f2224;
+  --p-night-600: #3a2c2d;
+  --p-night-400: #8a7475;
+  --p-sand-100: #f3e9dc;
+  --p-sand-300: #bcab9d;
+  --p-rose-300: #eba3b3;
+  --p-rose-400: #d06a80;
+  --p-rose-500: #b8465f;
+  --p-rose-600: #c95670;
+  --p-rose-800: #5a2a35;
+  --p-rose-850: #7d3a4a;
+  --p-rose-900: #3a1d25;
+  --p-sage-300: #b4cf8c;
+  --p-sage-800: #3b4a2a;
+  --p-sage-900: #232d1a;
+  --p-gold-300: #e8b25a;
+  --p-gold-500: #d4972e;
+  --p-gold-800: #5a4420;
+  --p-gold-900: #35280f;
+  --p-coral-300: #f28b7d;
+  --p-coral-900: #3d1a17;
+
+  --duration-exit: 150ms;
+  --duration-enter: 220ms;
+  --duration-move: 380ms;
+}
+
+/* Layer 2 — semantic (light is the default) */
+@theme {
+  --color-background: var(--p-beige-50);
+  --color-surface: var(--p-beige-25);
+  --color-surface-sunken: var(--p-beige-100);
+  --color-surface-strong: var(--p-beige-200);
+
+  --color-foreground: var(--p-ink-950);
+  --color-foreground-muted: var(--p-ink-600);
+  --color-on-primary: var(--p-beige-25);
+
+  --color-primary: var(--p-wine-600);
+  --color-primary-hover: var(--p-wine-700);
+  --color-primary-text: var(--p-wine-700);
+  --color-primary-mark: var(--p-wine-500);
+  --color-primary-soft: var(--p-wine-50);
+  --color-primary-line: var(--p-wine-100);
+  --color-primary-muted: var(--p-wine-300);
+  --color-primary-deep: var(--p-wine-900);
+
+  --color-positive: var(--p-sage-700);
+  --color-positive-soft: var(--p-sage-50);
+  --color-positive-line: var(--p-sage-100);
+
+  --color-accent: var(--p-ochre-700);
+  --color-accent-soft: var(--p-ochre-50);
+  --color-accent-line: var(--p-ochre-100);
+  --color-accent-mark: var(--p-ochre-500);
+
+  --color-info: var(--p-ink-900);
+  --color-info-soft: var(--p-beige-100);
+  --color-destructive: var(--p-red-700);
+  --color-destructive-soft: var(--p-red-50);
+
+  --color-inverse: var(--p-ink-950);
+  --color-inverse-raised: var(--p-ink-900);
+  --color-on-inverse: var(--p-beige-25);
+
+  --color-line: var(--p-beige-300);
+  --color-line-strong: var(--p-beige-600);
+  --color-ring: var(--p-wine-600);
+
+  --font-display: "Newsreader Variable", "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Layer 3 — component */
+@theme {
+  --color-series-1: var(--p-wine-600);
+  --color-series-2: #b0506a;
+  --color-series-3: var(--p-ochre-500);
+  --color-series-4: #6c8a3c;
+  --color-series-5: #3f6178;
+  --color-series-6: #a0795a;
+  --color-series-7: #8a6a9e;
+
+  --shadow-card: 0 1px 2px rgba(35, 23, 26, 0.05);
+  --shadow-lift: 0 2px 4px rgba(35, 23, 26, 0.06), 0 18px 36px -18px rgba(61, 12, 25, 0.28);
+}
+
+/* Dark theme: same roles, its own steps, checked for contrast against the dark surfaces. */
+@layer base {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-background: var(--p-night-900);
+    --color-surface: var(--p-night-800);
+    --color-surface-sunken: var(--p-night-950);
+    --color-surface-strong: var(--p-night-700);
+    --color-foreground: var(--p-sand-100);
+    --color-foreground-muted: var(--p-sand-300);
+    --color-on-primary: var(--p-beige-25);
+    --color-primary: var(--p-rose-500);
+    --color-primary-hover: var(--p-rose-600);
+    --color-primary-text: var(--p-rose-300);
+    --color-primary-mark: var(--p-rose-400);
+    --color-primary-soft: var(--p-rose-900);
+    --color-primary-line: var(--p-rose-800);
+    --color-primary-muted: var(--p-rose-850);
+    --color-primary-deep: var(--p-rose-300);
+    --color-positive: var(--p-sage-300);
+    --color-positive-soft: var(--p-sage-900);
+    --color-positive-line: var(--p-sage-800);
+    --color-accent: var(--p-gold-300);
+    --color-accent-soft: var(--p-gold-900);
+    --color-accent-line: var(--p-gold-800);
+    --color-accent-mark: var(--p-gold-500);
+    --color-info: var(--p-sand-100);
+    --color-info-soft: var(--p-night-700);
+    --color-destructive: var(--p-coral-300);
+    --color-destructive-soft: var(--p-coral-900);
+    --color-inverse: var(--p-sand-100);
+    --color-inverse-raised: var(--p-sand-300);
+    --color-on-inverse: var(--p-night-900);
+    --color-line: var(--p-night-600);
+    --color-line-strong: var(--p-night-400);
+    --color-ring: var(--p-rose-400);
+    --color-series-1: var(--p-rose-400);
+    --color-series-2: var(--p-rose-300);
+    --color-series-3: var(--p-gold-500);
+    --color-series-4: #93b86a;
+    --color-series-5: #7fa8c4;
+    --color-series-6: #c9a07e;
+    --color-series-7: #b596c9;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.3), 0 18px 36px -18px rgba(0, 0, 0, 0.7);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 560;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  label {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  select {
+    background-color: var(--color-surface);
+    color: var(--color-foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--color-primary-line);
+  }
+}
+
+@layer components {
+  .rec {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rec-sm {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.hatch {
+  background-color: var(--color-accent-soft);
+  background-image: repeating-linear-gradient(135deg, var(--color-accent-mark) 0 1.5px, transparent 1.5px 5px);
+}
+
+/* Motion. Bars and rings grow from zero on mount. */
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-primary) 35%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+.animate-grow {
+  transform-origin: left;
+  animation: grow-x 700ms var(--ease-out-soft) both;
+}
+.animate-rise {
+  animation: rise 420ms var(--ease-out-soft) both;
+}
+.animate-pulse-ring {
+  animation: pulse-ring 1.4s ease-out 2;
+}
+
+/* View transitions — recipes from Vercel's react-view-transitions skill */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes slide {
+  from {
+    translate: var(--slide-offset);
+  }
+}
+@keyframes slide-y {
+  from {
+    transform: translateY(var(--slide-y-offset, 10px));
+  }
+}
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
+::view-transition-old(.fade-out) {
+  animation: var(--duration-exit) ease-in both fade reverse;
+}
+::view-transition-new(.fade-in) {
+  animation: var(--duration-enter) ease-out var(--duration-exit) both fade;
+}
+
+::view-transition-old(.slide-down) {
+  animation:
+    var(--duration-exit) ease-out both fade reverse,
+    var(--duration-exit) ease-out both slide-y reverse;
+}
+::view-transition-new(.slide-up) {
+  animation:
+    var(--duration-enter) ease-in var(--duration-exit) both fade,
+    var(--duration-move) var(--ease-out-soft) both slide-y;
+}
+
+::view-transition-old(.nav-forward) {
+  --slide-offset: -60px;
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 60px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 60px;
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -60px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide;
+}
+
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-move);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+::view-transition-group(.text-morph) {
+  animation-duration: var(--duration-move);
+}
+::view-transition-old(.text-morph) {
+  display: none;
+}
+::view-transition-new(.text-morph) {
+  animation: none;
+  object-fit: none;
+  object-position: left top;
+}
+
+::view-transition-group(.reorder) {
+  animation-duration: var(--duration-move);
+  animation-timing-function: var(--ease-out-soft);
+}
+
+/* Theme switch: circular reveal from the toggle button */
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--reveal-x, 50%) var(--reveal-y, 0));
+  }
+  to {
+    clip-path: circle(var(--reveal-r, 150vmax) at var(--reveal-x, 50%) var(--reveal-y, 0));
+  }
+}
+html.theme-switching::view-transition-old(root) {
+  animation: none;
+}
+html.theme-switching::view-transition-new(root) {
+  animation: theme-reveal 560ms var(--ease-out-soft);
+}
+
+/* The toggle shows what you'll switch to: a moon in light mode, a sun in dark mode */
+.theme-icon-sun,
+.theme-icon-moon {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 260ms var(--ease-out-soft),
+    transform 360ms var(--ease-out-soft);
+}
+.theme-icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+:root[data-theme="dark"] .theme-icon-sun {
+  opacity: 1;
+  transform: none;
+}
+:root[data-theme="dark"] .theme-icon-moon {
+  opacity: 0;
+  transform: rotate(60deg) scale(0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+  .animate-grow,
+  .animate-rise,
+  .animate-pulse-ring {
+    animation: none;
+  }
+}

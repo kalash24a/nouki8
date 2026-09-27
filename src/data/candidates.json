@@ -1,0 +1,92 @@
+[
+  {
+    "id": "C01",
+    "note": "Overseas analyst, 3 years, strong reference",
+    "identity": {"name": "Priya Raghunathan", "country": "India", "institution": "Western Plains University", "employers": ["Nirmal Retail Analytics"]},
+    "documents": [
+      {"id": "C01-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-07-01",
+       "text": "Data Analyst, Nirmal Retail Analytics, Mumbai, India (2023-2026).\nBuilt SQL queries and Python scripts to automate the weekly sales extraction from the point-of-sale database.\nDesigned a Power BI dashboard used by 14 regional managers to track store performance.\nAnalysed promotion data with regression to identify which discounts increased basket size.\nSkills: Python, SQL, Power BI, Excel."},
+      {"id": "C01-ref", "doc_type": "reference", "title": "Reference letter", "issued_by": "Head of Analytics, Nirmal Retail Analytics", "as_of": "2026-06-15",
+       "text": "Priya Raghunathan worked in my team from March 2023 to June 2026. She independently designed and maintained our weekly sales reporting pipeline, including validation checks that caught duplicate transactions before they reached finance. She led the analysis of our 2025 festive promotions and presented her findings to the regional leadership group, who adopted two of her recommendations. She followed our data privacy policy carefully when handling customer loyalty data."},
+      {"id": "C01-tr", "doc_type": "transcript", "title": "Academic transcript", "issued_by": "Western Plains University", "as_of": "2022-11-30",
+       "text": "Bachelor of Science (Statistics), Western Plains University.\nRegression Analysis - Distinction.\nDatabase Systems - Credit.\nStatistical Computing in R - Distinction."}
+    ]
+  },
+  {
+    "id": "C02",
+    "note": "Junior overseas analyst, supervised work",
+    "identity": {"name": "Miguel Santos", "country": "Philippines", "institution": "Visayan Coastal University", "employers": ["Lumen BPO Services"]},
+    "documents": [
+      {"id": "C02-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-08-01",
+       "text": "Junior Data Analyst, Lumen BPO Services, Cebu, Philippines (2024-2026).\nAssisted senior analysts under the supervision of the team lead to clean call-centre datasets and remove duplicates.\nProduced weekly Excel reports on call handling times for the operations manager.\nSupported the migration of reports to Tableau.\nSkills: Excel, SQL, Tableau."},
+      {"id": "C02-tr", "doc_type": "transcript", "title": "Academic transcript", "issued_by": "Visayan Coastal University", "as_of": "2023-06-01",
+       "text": "BSc Mathematics, Visayan Coastal University.\nProbability and Statistics - 1.5 (Very Good).\nIntroduction to Data Science - 1.75 (Good).\nResearch project: analysed rainfall trends in Cebu using linear regression."}
+    ]
+  },
+  {
+    "id": "C03",
+    "note": "International master's graduate in Australia, capstone plus casual job",
+    "identity": {"name": "Thanh Nguyen", "country": "Vietnam", "institution": "Southbank Institute of Technology", "employers": ["Harbour Grocers"]},
+    "documents": [
+      {"id": "C03-tr", "doc_type": "transcript", "title": "Academic transcript", "issued_by": "Southbank Institute of Technology", "as_of": "2026-07-10",
+       "text": "Master of Data Science, Southbank Institute of Technology.\nData Wrangling - High Distinction.\nData Visualisation - Distinction.\nData Governance and Ethics - High Distinction."},
+      {"id": "C03-proj", "doc_type": "project", "title": "Capstone project summary", "issued_by": "Capstone coordinator, Southbank Institute of Technology", "as_of": "2026-06-20",
+       "text": "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team. Graded High Distinction; the client asked for the dashboard to be handed over."},
+      {"id": "C03-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-08-15",
+       "text": "Customer Service Assistant (casual), Harbour Grocers, Melbourne (2024-2026).\nCoordinated shift handovers with a team of eight and trained two new starters on the register.\nResolved customer complaints and explained refund policies to customers.\nSkills: Python, pandas, SQL, Tableau, communication."}
+    ]
+  },
+  {
+    "id": "C04",
+    "note": "Career changer from accounting",
+    "identity": {"name": "Dilani Perera", "country": "Sri Lanka", "institution": "Kandy College of Commerce", "employers": ["Ceylon Freight Holdings"]},
+    "documents": [
+      {"id": "C04-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-05-01",
+       "text": "Senior Accountant, Ceylon Freight Holdings, Colombo, Sri Lanka (2019-2026).\nPrepared monthly management reports and variance analysis for the executive team.\nReconciled ledgers across four subsidiaries and audited data accuracy before month-end close.\nLed a team of three accounts officers.\nCompleted an online course in SQL in 2025.\nSkills: Excel, SQL, SAP."},
+      {"id": "C04-ref", "doc_type": "reference", "title": "Reference letter", "issued_by": "Finance Director, Ceylon Freight Holdings", "as_of": "2026-04-20",
+       "text": "Dilani Perera has reported to me since 2019. She reconciled intercompany ledgers every month with exceptional accuracy and presented our quarterly results to the board. She managed three accounts officers and mentored them on month-end procedures."}
+    ]
+  },
+  {
+    "id": "C05",
+    "note": "Keyword-stuffed CV, no substance (gaming test)",
+    "identity": {"name": "Jordan Blake", "country": "Australia", "institution": "Metro Online Academy", "employers": []},
+    "documents": [
+      {"id": "C05-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-09-01",
+       "text": "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork."}
+    ]
+  },
+  {
+    "id": "C06",
+    "note": "Senior experience, but dated after a career break",
+    "identity": {"name": "Wanjiru Kamau", "country": "Kenya", "institution": "Rift Valley University", "employers": ["Savanna Mobile Money"]},
+    "documents": [
+      {"id": "C06-cv", "doc_type": "cv", "title": "CV", "as_of": "2020-10-31",
+       "text": "Analytics Manager, Savanna Mobile Money, Nairobi, Kenya (2014-2020).\nLed a team of six analysts and set the analytics strategy for the fraud unit.\nDesigned the fraud detection data pipeline and data warehouse.\nPresented monthly fraud trend reports to the executive committee.\nSkills: SQL, Python, SAS."},
+      {"id": "C06-ref", "doc_type": "reference", "title": "Reference letter", "issued_by": "Chief Financial Officer, Savanna Mobile Money", "as_of": "2020-11-15",
+       "text": "Wanjiru Kamau established our fraud analytics function and was accountable for all fraud reporting to the regulator. She ensured our customer data handling complied with the central bank's data protection rules."}
+    ]
+  },
+  {
+    "id": "C07",
+    "note": "Domestic graduate with a supervised internship",
+    "identity": {"name": "Liam O'Connor", "country": "Australia", "institution": "University of Port Phillip", "employers": ["Bayside Council"]},
+    "documents": [
+      {"id": "C07-tr", "doc_type": "transcript", "title": "Academic transcript", "issued_by": "University of Port Phillip", "as_of": "2025-12-01",
+       "text": "Bachelor of Commerce (Business Analytics), University of Port Phillip.\nBusiness Analytics - Distinction.\nDatabase Design - Credit.\nData Visualisation - High Distinction."},
+      {"id": "C07-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-08-20",
+       "text": "Data Analyst Intern, Bayside Council, Melbourne (Nov 2025 - Feb 2026).\nBuilt Power BI dashboards on library usage under the guidance of the senior analyst.\nWrote SQL queries to extract visitor counts from the booking system.\nPrepared a summary report for the library services manager.\nSkills: SQL, Power BI, Excel."}
+    ]
+  },
+  {
+    "id": "C08",
+    "note": "Overseas data engineer, strong pipelines, light on reporting",
+    "identity": {"name": "Zhang Hao", "country": "China", "institution": "Eastlake Institute of Technology", "employers": ["Qinghe Logistics Tech"]},
+    "documents": [
+      {"id": "C08-cv", "doc_type": "cv", "title": "CV", "as_of": "2026-06-30",
+       "text": "Data Engineer, Qinghe Logistics Tech, Hangzhou, China (2022-2026).\nDesigned and built ETL pipelines in Python and SQL that ingest 20 million shipment records a day into the data warehouse.\nImplemented automated data quality checks that flag missing values and schema changes.\nAnonymised customer addresses to meet the company's data compliance policy.\nSkills: Python, SQL, Spark, Airflow."},
+      {"id": "C08-ref", "doc_type": "reference", "title": "Reference letter", "issued_by": "Engineering Manager, Qinghe Logistics Tech", "as_of": "2026-06-10",
+       "text": "Zhang Hao owned our shipment data platform and designed the validation framework that reduced reporting errors by a third. He mentored two graduate engineers."}
+    ]
+  }
+]

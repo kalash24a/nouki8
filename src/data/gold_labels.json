@@ -1,0 +1,11 @@
+{
+  "_note": "Author-labelled draft: which catalogue tasks each document set genuinely evidences, ignoring bare skills-list lines. The team should review and correct these before quoting any precision number.",
+  "C01": ["T1", "T2", "T3", "T4", "T5", "T6", "T7"],
+  "C02": ["T2", "T3", "T4", "T5"],
+  "C03": ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "C1", "C2"],
+  "C04": ["T2", "T3", "T5", "T7", "C2"],
+  "C05": [],
+  "C06": ["T1", "T3", "T5", "T6", "C2"],
+  "C07": ["T4", "T5", "T7"],
+  "C08": ["T1", "T2", "T6", "T7", "C2"]
+}

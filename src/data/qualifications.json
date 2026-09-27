@@ -1,0 +1,90 @@
+{
+  "scales": {
+    "au": {
+      "label": "Australian HD, D, C, P scale",
+      "pass_mark": 50,
+      "grades": {
+        "High Distinction": [85, 100],
+        "Distinction": [75, 84],
+        "Credit": [65, 74],
+        "Pass": [50, 64]
+      }
+    },
+    "wpu-legend": {
+      "label": "Issuer's grading legend supplied with the transcript, percentage bands",
+      "pass_mark": 40,
+      "grades": {
+        "Distinction": [75, 100],
+        "Credit": [60, 74],
+        "Pass": [40, 59]
+      }
+    },
+    "vcu-legend": {
+      "label": "Issuer's grading legend supplied with the transcript, 1.0 to 5.0 scale (1.0 highest, 3.0 lowest pass)",
+      "pass_mark": 75,
+      "grades": {
+        "1.0": [99, 100],
+        "1.25": [96, 98],
+        "1.5": [93, 95],
+        "1.75": [90, 92],
+        "2.0": [87, 89],
+        "2.25": [84, 86],
+        "2.5": [81, 83],
+        "2.75": [78, 80],
+        "3.0": [75, 77]
+      }
+    }
+  },
+  "records": {
+    "C01": {
+      "document_id": "C01-tr",
+      "award": "Bachelor of Science",
+      "field": "Statistics",
+      "aqf": 7,
+      "duration_years": 3,
+      "scale": "wpu-legend",
+      "units": [
+        { "unit": "Regression Analysis", "grade": "Distinction" },
+        { "unit": "Database Systems", "grade": "Credit" },
+        { "unit": "Statistical Computing in R", "grade": "Distinction" }
+      ],
+      "level_note": "Three-year bachelor's degrees from some overseas institutions have been rated at AQF 6 (Associate Degree) by skills assessing authorities. Confirm with a formal assessment if the level matters for the role or a visa."
+    },
+    "C02": {
+      "document_id": "C02-tr",
+      "award": "Bachelor of Science",
+      "field": "Mathematics",
+      "aqf": 7,
+      "duration_years": 4,
+      "scale": "vcu-legend",
+      "units": [
+        { "unit": "Probability and Statistics", "grade": "1.5" },
+        { "unit": "Introduction to Data Science", "grade": "1.75" }
+      ]
+    },
+    "C03": {
+      "document_id": "C03-tr",
+      "award": "Master of Data Science",
+      "field": "Data science",
+      "aqf": 9,
+      "scale": "au",
+      "units": [
+        { "unit": "Data Wrangling", "grade": "High Distinction" },
+        { "unit": "Data Visualisation", "grade": "Distinction" },
+        { "unit": "Data Governance and Ethics", "grade": "High Distinction" }
+      ]
+    },
+    "C07": {
+      "document_id": "C07-tr",
+      "award": "Bachelor of Commerce",
+      "field": "Business analytics",
+      "aqf": 7,
+      "scale": "au",
+      "units": [
+        { "unit": "Business Analytics", "grade": "Distinction" },
+        { "unit": "Database Design", "grade": "Credit" },
+        { "unit": "Data Visualisation", "grade": "High Distinction" }
+      ]
+    }
+  }
+}

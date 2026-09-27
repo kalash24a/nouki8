@@ -1,0 +1,30 @@
+[
+  {
+    "id": "J01",
+    "title": "Data Analyst, Growth Team",
+    "employer": "Fitzroy Fresh Co (fictional SME)",
+    "description": "We're a 60-person online grocery business in Melbourne looking for a Data Analyst. You'll analyse customer and promotion data to find what drives repeat orders, build dashboards for the marketing team, write SQL and Python to automate reporting, check data quality, and present findings to the leadership team. You'll handle customer data under our privacy policy.",
+    "requirements": [
+      {"task_id": "T3", "target": 3, "weight": 1.5},
+      {"task_id": "T4", "target": 2, "weight": 1.0},
+      {"task_id": "T5", "target": 2, "weight": 1.0},
+      {"task_id": "T7", "target": 2, "weight": 1.0},
+      {"task_id": "T2", "target": 2, "weight": 1.0},
+      {"task_id": "T6", "target": 1, "weight": 0.5},
+      {"task_id": "C1", "target": 2, "weight": 1.0}
+    ]
+  },
+  {
+    "id": "J02",
+    "title": "Junior Data Analyst",
+    "employer": "Westgate Community Health (fictional)",
+    "description": "Entry-level role supporting our reporting team. You'll clean and check service data, run simple analyses, build basic dashboards, write reports for program managers, and work closely with a small team. Training in SQL is provided.",
+    "requirements": [
+      {"task_id": "T2", "target": 1, "weight": 1.0},
+      {"task_id": "T3", "target": 1, "weight": 1.0},
+      {"task_id": "T4", "target": 1, "weight": 1.0},
+      {"task_id": "T5", "target": 1, "weight": 1.0},
+      {"task_id": "C2", "target": 1, "weight": 1.0}
+    ]
+  }
+]

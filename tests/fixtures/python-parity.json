@@ -1,0 +1,1540 @@
+{
+ "today": "2026-09-27",
+ "passports": {
+  "C01": {
+   "C1": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 3,
+    "cap": "",
+    "dated": false,
+    "reason": "'Designed' in cv",
+    "claims": [
+     [
+      "C1",
+      "C01-ref",
+      "She followed our data privacy policy carefully when handling customer loyalty data.",
+      2,
+      2,
+      "documented duty default"
+     ],
+     [
+      "C1",
+      "C01-cv",
+      "Designed a Power BI dashboard used by 14 regional managers to track store performance.",
+      3,
+      3,
+      "'Designed'"
+     ]
+    ]
+   },
+   "C2": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "documented duty default in reference",
+    "claims": [
+     [
+      "C2",
+      "C01-ref",
+      "Priya Raghunathan worked in my team from March 2023 to June 2026.",
+      2,
+      2,
+      "documented duty default"
+     ]
+    ]
+   },
+   "T1": {
+    "band": "Strong",
+    "strength": 4.0,
+    "level": 3,
+    "cap": "",
+    "dated": false,
+    "reason": "'designed' in reference",
+    "claims": [
+     [
+      "T1",
+      "C01-ref",
+      "She independently designed and maintained our weekly sales reporting pipeline, including validation checks that caught duplicate transactions before they reached finance.",
+      2,
+      3,
+      "'designed'"
+     ],
+     [
+      "T1",
+      "C01-tr",
+      "Database Systems - Credit.",
+      2,
+      1,
+      "coursework or project default"
+     ],
+     [
+      "T1",
+      "C01-cv",
+      "Built SQL queries and Python scripts to automate the weekly sales extraction from the point-of-sale database.",
+      3,
+      2,
+      "'Built'"
+     ]
+    ]
+   },
+   "T2": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 2,
+    "cap": "Evidence cue suggests Proficient, capped at Working because evidence is Moderate",
+    "dated": false,
+    "reason": "'designed' in reference",
+    "claims": [
+     [
+      "T2",
+      "C01-ref",
+      "She independently designed and maintained our weekly sales reporting pipeline, including validation checks that caught duplicate transactions before they reached finance.",
+      2,
+      3,
+      "'designed'"
+     ]
+    ]
+   },
+   "T3": {
+    "band": "Strong",
+    "strength": 4.0,
+    "level": 3,
+    "cap": "",
+    "dated": false,
+    "reason": "'led' in reference",
+    "claims": [
+     [
+      "T3",
+      "C01-ref",
+      "She led the analysis of our 2025 festive promotions and presented her findings to the regional leadership group, who adopted two of her recommendations.",
+      2,
+      3,
+      "'led'"
+     ],
+     [
+      "T3",
+      "C01-tr",
+      "Regression Analysis - Distinction.",
+      2,
+      1,
+      "coursework or project default"
+     ],
+     [
+      "T3",
+      "C01-tr",
+      "Statistical Computing in R - Distinction.",
+      2,
+      1,
+      "coursework or project default"
+     ],
+     [
+      "T3",
+      "C01-cv",
+      "Analysed promotion data with regression to identify which discounts increased basket size.",
+      3,
+      2,
+      "'Analysed'"
+     ]
+    ]
+   },
+   "T4": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Proficient, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Designed' in cv",
+    "claims": [
+     [
+      "T4",
+      "C01-cv",
+      "Designed a Power BI dashboard used by 14 regional managers to track store performance.",
+      3,
+      3,
+      "'Designed'"
+     ],
+     [
+      "T4",
+      "C01-cv",
+      "Skills: Python, SQL, Power BI, Excel.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 2,
+    "cap": "Evidence cue suggests Proficient, capped at Working because evidence is Moderate",
+    "dated": false,
+    "reason": "'designed' in reference",
+    "claims": [
+     [
+      "T5",
+      "C01-ref",
+      "She independently designed and maintained our weekly sales reporting pipeline, including validation checks that caught duplicate transactions before they reached finance.",
+      2,
+      3,
+      "'designed'"
+     ],
+     [
+      "T5",
+      "C01-ref",
+      "She led the analysis of our 2025 festive promotions and presented her findings to the regional leadership group, who adopted two of her recommendations.",
+      2,
+      3,
+      "'led'"
+     ]
+    ]
+   },
+   "T6": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "documented duty default in reference",
+    "claims": [
+     [
+      "T6",
+      "C01-ref",
+      "She followed our data privacy policy carefully when handling customer loyalty data.",
+      2,
+      2,
+      "documented duty default"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Built' in cv",
+    "claims": [
+     [
+      "T7",
+      "C01-cv",
+      "Built SQL queries and Python scripts to automate the weekly sales extraction from the point-of-sale database.",
+      3,
+      2,
+      "'Built'"
+     ],
+     [
+      "T7",
+      "C01-cv",
+      "Skills: Python, SQL, Power BI, Excel.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C02": {
+   "C1": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Produced' in cv",
+    "claims": [
+     [
+      "C1",
+      "C02-cv",
+      "Produced weekly Excel reports on call handling times for the operations manager.",
+      3,
+      2,
+      "'Produced'"
+     ]
+    ]
+   },
+   "C2": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "'Assisted' in cv",
+    "claims": [
+     [
+      "C2",
+      "C02-cv",
+      "Assisted senior analysts under the supervision of the team lead to clean call-centre datasets and remove duplicates.",
+      3,
+      1,
+      "'Assisted'"
+     ]
+    ]
+   },
+   "T2": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "'Assisted' in cv",
+    "claims": [
+     [
+      "T2",
+      "C02-cv",
+      "Assisted senior analysts under the supervision of the team lead to clean call-centre datasets and remove duplicates.",
+      3,
+      1,
+      "'Assisted'"
+     ]
+    ]
+   },
+   "T3": {
+    "band": "Moderate",
+    "strength": 2.7,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "'analysed' in transcript",
+    "claims": [
+     [
+      "T3",
+      "C02-tr",
+      "Research project: analysed rainfall trends in Cebu using linear regression.",
+      2,
+      2,
+      "'analysed'"
+     ]
+    ]
+   },
+   "T4": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "'Supported' in cv",
+    "claims": [
+     [
+      "T4",
+      "C02-cv",
+      "Supported the migration of reports to Tableau.",
+      3,
+      1,
+      "'Supported'"
+     ],
+     [
+      "T4",
+      "C02-cv",
+      "Skills: Excel, SQL, Tableau.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Produced' in cv",
+    "claims": [
+     [
+      "T5",
+      "C02-cv",
+      "Produced weekly Excel reports on call handling times for the operations manager.",
+      3,
+      2,
+      "'Produced'"
+     ],
+     [
+      "T5",
+      "C02-cv",
+      "Supported the migration of reports to Tableau.",
+      3,
+      1,
+      "'Supported'"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T7",
+      "C02-cv",
+      "Skills: Excel, SQL, Tableau.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C03": {
+   "C1": {
+    "band": "Moderate",
+    "strength": 2.5,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "documented duty default in cv",
+    "claims": [
+     [
+      "C1",
+      "C03-cv",
+      "Customer Service Assistant (casual), Harbour Grocers, Melbourne (2024-2026).",
+      3,
+      2,
+      "documented duty default"
+     ],
+     [
+      "C1",
+      "C03-cv",
+      "Resolved customer complaints and explained refund policies to customers.",
+      3,
+      2,
+      "documented duty default"
+     ],
+     [
+      "C1",
+      "C03-proj",
+      "Graded High Distinction; the client asked for the dashboard to be handed over.",
+      3,
+      1,
+      "coursework or project default"
+     ]
+    ]
+   },
+   "C2": {
+    "band": "Moderate",
+    "strength": 2.5,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "'built' in project",
+    "claims": [
+     [
+      "C2",
+      "C03-cv",
+      "Coordinated shift handovers with a team of eight and trained two new starters on the register.",
+      3,
+      2,
+      "'Coordinated'"
+     ],
+     [
+      "C2",
+      "C03-proj",
+      "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team.",
+      3,
+      2,
+      "'built'"
+     ]
+    ]
+   },
+   "T1": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'built' in project",
+    "claims": [
+     [
+      "T1",
+      "C03-proj",
+      "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team.",
+      3,
+      2,
+      "'built'"
+     ]
+    ]
+   },
+   "T3": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'built' in project",
+    "claims": [
+     [
+      "T3",
+      "C03-proj",
+      "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team.",
+      3,
+      2,
+      "'built'"
+     ]
+    ]
+   },
+   "T4": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "'built' in project",
+    "claims": [
+     [
+      "T4",
+      "C03-tr",
+      "Data Visualisation - Distinction.",
+      2,
+      1,
+      "coursework or project default"
+     ],
+     [
+      "T4",
+      "C03-proj",
+      "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team.",
+      3,
+      2,
+      "'built'"
+     ],
+     [
+      "T4",
+      "C03-proj",
+      "Graded High Distinction; the client asked for the dashboard to be handed over.",
+      3,
+      1,
+      "coursework or project default"
+     ],
+     [
+      "T4",
+      "C03-cv",
+      "Skills: Python, pandas, SQL, Tableau, communication.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'built' in project",
+    "claims": [
+     [
+      "T5",
+      "C03-proj",
+      "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team.",
+      3,
+      2,
+      "'built'"
+     ]
+    ]
+   },
+   "T6": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "coursework or project default in transcript",
+    "claims": [
+     [
+      "T6",
+      "C03-tr",
+      "Data Governance and Ethics - High Distinction.",
+      2,
+      1,
+      "coursework or project default"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'built' in project",
+    "claims": [
+     [
+      "T7",
+      "C03-proj",
+      "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team.",
+      3,
+      2,
+      "'built'"
+     ],
+     [
+      "T7",
+      "C03-cv",
+      "Skills: Python, pandas, SQL, Tableau, communication.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C04": {
+   "C2": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 3,
+    "cap": "",
+    "dated": false,
+    "reason": "'managed' in reference",
+    "claims": [
+     [
+      "C2",
+      "C04-ref",
+      "She managed three accounts officers and mentored them on month-end procedures.",
+      2,
+      3,
+      "'managed'"
+     ],
+     [
+      "C2",
+      "C04-cv",
+      "Prepared monthly management reports and variance analysis for the executive team.",
+      3,
+      2,
+      "'Prepared'"
+     ],
+     [
+      "C2",
+      "C04-cv",
+      "Led a team of three accounts officers.",
+      3,
+      3,
+      "'Led'"
+     ]
+    ]
+   },
+   "T2": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "'reconciled' in reference",
+    "claims": [
+     [
+      "T2",
+      "C04-ref",
+      "She reconciled intercompany ledgers every month with exceptional accuracy and presented our quarterly results to the board.",
+      2,
+      2,
+      "'reconciled'"
+     ],
+     [
+      "T2",
+      "C04-cv",
+      "Reconciled ledgers across four subsidiaries and audited data accuracy before month-end close.",
+      3,
+      2,
+      "'Reconciled'"
+     ]
+    ]
+   },
+   "T3": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Prepared' in cv",
+    "claims": [
+     [
+      "T3",
+      "C04-cv",
+      "Prepared monthly management reports and variance analysis for the executive team.",
+      3,
+      2,
+      "'Prepared'"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 2,
+    "cap": "",
+    "dated": false,
+    "reason": "documented duty default in reference",
+    "claims": [
+     [
+      "T5",
+      "C04-ref",
+      "Dilani Perera has reported to me since 2019.",
+      2,
+      2,
+      "documented duty default"
+     ],
+     [
+      "T5",
+      "C04-ref",
+      "She reconciled intercompany ledgers every month with exceptional accuracy and presented our quarterly results to the board.",
+      2,
+      2,
+      "'reconciled'"
+     ],
+     [
+      "T5",
+      "C04-cv",
+      "Prepared monthly management reports and variance analysis for the executive team.",
+      3,
+      2,
+      "'Prepared'"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "'Completed an online course' in cv",
+    "claims": [
+     [
+      "T7",
+      "C04-cv",
+      "Completed an online course in SQL in 2025.",
+      3,
+      1,
+      "'Completed an online course'"
+     ],
+     [
+      "T7",
+      "C04-cv",
+      "Skills: Excel, SQL, SAP.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C05": {
+   "C1": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "C1",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "C2": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "C2",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T1": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T1",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T2": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T2",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T3": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T3",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T4": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T4",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T5",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T6": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T6",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Claimed only",
+    "strength": 1.0,
+    "level": 0,
+    "cap": "",
+    "dated": false,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T7",
+      "C05-cv",
+      "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C06": {
+   "C1": {
+    "band": "Moderate",
+    "strength": 2.98,
+    "level": 2,
+    "cap": "",
+    "dated": true,
+    "reason": "documented duty default in reference",
+    "claims": [
+     [
+      "C1",
+      "C06-ref",
+      "She ensured our customer data handling complied with the central bank's data protection rules.",
+      2,
+      2,
+      "documented duty default"
+     ],
+     [
+      "C1",
+      "C06-cv",
+      "Analytics Manager, Savanna Mobile Money, Nairobi, Kenya (2014-2020).",
+      3,
+      2,
+      "documented duty default"
+     ]
+    ]
+   },
+   "C2": {
+    "band": "Weak",
+    "strength": 1.7,
+    "level": 1,
+    "cap": "Evidence cue suggests Advanced, capped at Foundation because evidence is Weak",
+    "dated": true,
+    "reason": "'set the analytics strategy' in cv",
+    "claims": [
+     [
+      "C2",
+      "C06-cv",
+      "Led a team of six analysts and set the analytics strategy for the fraud unit.",
+      3,
+      4,
+      "'set the analytics strategy'"
+     ]
+    ]
+   },
+   "T1": {
+    "band": "Weak",
+    "strength": 1.7,
+    "level": 1,
+    "cap": "Evidence cue suggests Proficient, capped at Foundation because evidence is Weak",
+    "dated": true,
+    "reason": "'Designed' in cv",
+    "claims": [
+     [
+      "T1",
+      "C06-cv",
+      "Designed the fraud detection data pipeline and data warehouse.",
+      3,
+      3,
+      "'Designed'"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Moderate",
+    "strength": 2.98,
+    "level": 2,
+    "cap": "Evidence cue suggests Advanced, capped at Working because evidence is Moderate",
+    "dated": true,
+    "reason": "'established our' in reference",
+    "claims": [
+     [
+      "T5",
+      "C06-ref",
+      "Wanjiru Kamau established our fraud analytics function and was accountable for all fraud reporting to the regulator.",
+      2,
+      4,
+      "'established our'"
+     ],
+     [
+      "T5",
+      "C06-cv",
+      "Presented monthly fraud trend reports to the executive committee.",
+      3,
+      2,
+      "'Presented'"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Claimed only",
+    "strength": 0.85,
+    "level": 0,
+    "cap": "",
+    "dated": true,
+    "reason": "no level: evidence is self-claimed",
+    "claims": [
+     [
+      "T7",
+      "C06-cv",
+      "Skills: SQL, Python, SAS.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C07": {
+   "C1": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Prepared' in cv",
+    "claims": [
+     [
+      "C1",
+      "C07-cv",
+      "Prepared a summary report for the library services manager.",
+      3,
+      2,
+      "'Prepared'"
+     ]
+    ]
+   },
+   "T1": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "coursework or project default in transcript",
+    "claims": [
+     [
+      "T1",
+      "C07-tr",
+      "Database Design - Credit.",
+      2,
+      1,
+      "coursework or project default"
+     ]
+    ]
+   },
+   "T4": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 1,
+    "cap": "",
+    "dated": false,
+    "reason": "coursework or project default in transcript",
+    "claims": [
+     [
+      "T4",
+      "C07-tr",
+      "Data Visualisation - High Distinction.",
+      2,
+      1,
+      "coursework or project default"
+     ],
+     [
+      "T4",
+      "C07-cv",
+      "Built Power BI dashboards on library usage under the guidance of the senior analyst.",
+      3,
+      1,
+      "'under the guidance'"
+     ],
+     [
+      "T4",
+      "C07-cv",
+      "Skills: SQL, Power BI, Excel.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Prepared' in cv",
+    "claims": [
+     [
+      "T5",
+      "C07-cv",
+      "Prepared a summary report for the library services manager.",
+      3,
+      2,
+      "'Prepared'"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Wrote' in cv",
+    "claims": [
+     [
+      "T7",
+      "C07-cv",
+      "Wrote SQL queries to extract visitor counts from the booking system.",
+      3,
+      2,
+      "'Wrote'"
+     ],
+     [
+      "T7",
+      "C07-cv",
+      "Skills: SQL, Power BI, Excel.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  },
+  "C08": {
+   "C1": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "documented duty default in cv",
+    "claims": [
+     [
+      "C1",
+      "C08-cv",
+      "Anonymised customer addresses to meet the company's data compliance policy.",
+      3,
+      2,
+      "documented duty default"
+     ]
+    ]
+   },
+   "C2": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 2,
+    "cap": "Evidence cue suggests Proficient, capped at Working because evidence is Moderate",
+    "dated": false,
+    "reason": "'mentored' in reference",
+    "claims": [
+     [
+      "C2",
+      "C08-ref",
+      "He mentored two graduate engineers.",
+      2,
+      3,
+      "'mentored'"
+     ]
+    ]
+   },
+   "T1": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Proficient, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Designed' in cv",
+    "claims": [
+     [
+      "T1",
+      "C08-cv",
+      "Designed and built ETL pipelines in Python and SQL that ingest 20 million shipment records a day into the data warehouse.",
+      3,
+      3,
+      "'Designed'"
+     ]
+    ]
+   },
+   "T2": {
+    "band": "Strong",
+    "strength": 3.5,
+    "level": 3,
+    "cap": "",
+    "dated": false,
+    "reason": "'owned' in reference",
+    "claims": [
+     [
+      "T2",
+      "C08-ref",
+      "Zhang Hao owned our shipment data platform and designed the validation framework that reduced reporting errors by a third.",
+      2,
+      3,
+      "'owned'"
+     ],
+     [
+      "T2",
+      "C08-cv",
+      "Implemented automated data quality checks that flag missing values and schema changes.",
+      3,
+      2,
+      "'Implemented'"
+     ]
+    ]
+   },
+   "T5": {
+    "band": "Moderate",
+    "strength": 3.0,
+    "level": 2,
+    "cap": "Evidence cue suggests Proficient, capped at Working because evidence is Moderate",
+    "dated": false,
+    "reason": "'owned' in reference",
+    "claims": [
+     [
+      "T5",
+      "C08-ref",
+      "Zhang Hao owned our shipment data platform and designed the validation framework that reduced reporting errors by a third.",
+      2,
+      3,
+      "'owned'"
+     ]
+    ]
+   },
+   "T6": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Working, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "documented duty default in cv",
+    "claims": [
+     [
+      "T6",
+      "C08-cv",
+      "Anonymised customer addresses to meet the company's data compliance policy.",
+      3,
+      2,
+      "documented duty default"
+     ]
+    ]
+   },
+   "T7": {
+    "band": "Weak",
+    "strength": 2.0,
+    "level": 1,
+    "cap": "Evidence cue suggests Proficient, capped at Foundation because evidence is Weak",
+    "dated": false,
+    "reason": "'Designed' in cv",
+    "claims": [
+     [
+      "T7",
+      "C08-cv",
+      "Designed and built ETL pipelines in Python and SQL that ingest 20 million shipment records a day into the data warehouse.",
+      3,
+      3,
+      "'Designed'"
+     ],
+     [
+      "T7",
+      "C08-cv",
+      "Implemented automated data quality checks that flag missing values and schema changes.",
+      3,
+      2,
+      "'Implemented'"
+     ],
+     [
+      "T7",
+      "C08-cv",
+      "Skills: Python, SQL, Spark, Airflow.",
+      4,
+      0,
+      "skills list only"
+     ]
+    ]
+   }
+  }
+ },
+ "matches": {
+  "J01": [
+   {
+    "cid": "C01",
+    "score": 70.0,
+    "met": 5,
+    "to_prove": [
+     "T4",
+     "T7"
+    ],
+    "explanation": "Meets 5 of 7 requirements. Strongest: T3 at Proficient, Strong evidence from reference. To prove: T4 (unproven), T7 (unproven)."
+   },
+   {
+    "cid": "C03",
+    "score": 40.0,
+    "met": 3,
+    "to_prove": [
+     "T3",
+     "T5",
+     "T7",
+     "T2"
+    ],
+    "explanation": "Meets 3 of 7 requirements. Strongest: T4 at Working, Strong evidence from transcript. To prove: T3 (unproven), T5 (unproven), T7 (unproven), T2 (missing)."
+   },
+   {
+    "cid": "C04",
+    "score": 34.3,
+    "met": 2,
+    "to_prove": [
+     "T3",
+     "T4",
+     "T7",
+     "T6",
+     "C1"
+    ],
+    "explanation": "Meets 2 of 7 requirements. Strongest: T5 at Working, Strong evidence from reference. To prove: T3 (unproven), T4 (missing), T7 (unproven), T6 (missing), C1 (missing)."
+   },
+   {
+    "cid": "C08",
+    "score": 34.3,
+    "met": 2,
+    "to_prove": [
+     "T3",
+     "T4",
+     "T7",
+     "T6",
+     "C1"
+    ],
+    "explanation": "Meets 2 of 7 requirements. Strongest: T2 at Proficient, Strong evidence from reference. To prove: T3 (missing), T4 (missing), T7 (unproven), T6 (unproven), C1 (unproven)."
+   },
+   {
+    "cid": "C06",
+    "score": 22.9,
+    "met": 2,
+    "to_prove": [
+     "T3",
+     "T4",
+     "T7",
+     "T2",
+     "T6"
+    ],
+    "explanation": "Meets 2 of 7 requirements. Strongest: T5 at Working, Moderate evidence from reference. To prove: T3 (missing), T4 (missing), T7 (unproven), T2 (missing), T6 (missing)."
+   },
+   {
+    "cid": "C02",
+    "score": 22.9,
+    "met": 0,
+    "to_prove": [
+     "T3",
+     "T4",
+     "T5",
+     "T7",
+     "T2",
+     "T6",
+     "C1"
+    ],
+    "explanation": "Meets 0 of 7 requirements. To prove: T3 (below), T4 (unproven), T5 (unproven), T7 (unproven), T2 (unproven), T6 (missing), C1 (unproven)."
+   },
+   {
+    "cid": "C07",
+    "score": 15.7,
+    "met": 0,
+    "to_prove": [
+     "T3",
+     "T4",
+     "T5",
+     "T7",
+     "T2",
+     "T6",
+     "C1"
+    ],
+    "explanation": "Meets 0 of 7 requirements. To prove: T3 (missing), T4 (below), T5 (unproven), T7 (unproven), T2 (missing), T6 (missing), C1 (unproven)."
+   },
+   {
+    "cid": "C05",
+    "score": 0.0,
+    "met": 0,
+    "to_prove": [
+     "T3",
+     "T4",
+     "T5",
+     "T7",
+     "T2",
+     "T6",
+     "C1"
+    ],
+    "explanation": "Meets 0 of 7 requirements. To prove: T3 (unproven), T4 (unproven), T5 (unproven), T7 (unproven), T2 (unproven), T6 (unproven), C1 (unproven)."
+   }
+  ],
+  "J02": [
+   {
+    "cid": "C01",
+    "score": 76.0,
+    "met": 4,
+    "to_prove": [
+     "T4"
+    ],
+    "explanation": "Meets 4 of 5 requirements. Strongest: T3 at Proficient, Strong evidence from reference. To prove: T4 (unproven)."
+   },
+   {
+    "cid": "C04",
+    "score": 68.0,
+    "met": 3,
+    "to_prove": [
+     "T3",
+     "T4"
+    ],
+    "explanation": "Meets 3 of 5 requirements. Strongest: C2 at Proficient, Strong evidence from reference. To prove: T3 (unproven), T4 (missing)."
+   },
+   {
+    "cid": "C08",
+    "score": 52.0,
+    "met": 3,
+    "to_prove": [
+     "T3",
+     "T4"
+    ],
+    "explanation": "Meets 3 of 5 requirements. Strongest: T2 at Proficient, Strong evidence from reference. To prove: T3 (missing), T4 (missing)."
+   },
+   {
+    "cid": "C03",
+    "score": 52.0,
+    "met": 2,
+    "to_prove": [
+     "T2",
+     "T3",
+     "T5"
+    ],
+    "explanation": "Meets 2 of 5 requirements. Strongest: T4 at Working, Strong evidence from transcript. To prove: T2 (missing), T3 (unproven), T5 (unproven)."
+   },
+   {
+    "cid": "C02",
+    "score": 48.0,
+    "met": 1,
+    "to_prove": [
+     "T2",
+     "T4",
+     "T5",
+     "C2"
+    ],
+    "explanation": "Meets 1 of 5 requirements. Strongest: T3 at Working, Moderate evidence from transcript. To prove: T2 (unproven), T4 (unproven), T5 (unproven), C2 (unproven)."
+   },
+   {
+    "cid": "C07",
+    "score": 28.0,
+    "met": 1,
+    "to_prove": [
+     "T2",
+     "T3",
+     "T5",
+     "C2"
+    ],
+    "explanation": "Meets 1 of 5 requirements. Strongest: T4 at Foundation, Strong evidence from transcript. To prove: T2 (missing), T3 (missing), T5 (unproven), C2 (missing)."
+   },
+   {
+    "cid": "C06",
+    "score": 24.0,
+    "met": 1,
+    "to_prove": [
+     "T2",
+     "T3",
+     "T4",
+     "C2"
+    ],
+    "explanation": "Meets 1 of 5 requirements. Strongest: T5 at Working, Moderate evidence from reference. To prove: T2 (missing), T3 (missing), T4 (missing), C2 (unproven)."
+   },
+   {
+    "cid": "C05",
+    "score": 0.0,
+    "met": 0,
+    "to_prove": [
+     "T2",
+     "T3",
+     "T4",
+     "T5",
+     "C2"
+    ],
+    "explanation": "Meets 0 of 5 requirements. To prove: T2 (unproven), T3 (unproven), T4 (unproven), T5 (unproven), C2 (unproven)."
+   }
+  ]
+ },
+ "swap": {
+  "J01": {
+   "C01": [
+    "Data Analyst, Lumen BPO Services, Mumbai, Philippines (2023-2026).\nBuilt SQL queries and Python scripts to automate the weekly sales extraction from the point-of-sale database.\nDesigned a Power BI dashboard used by 14 regional managers to track store performance.\nAnalysed promotion data with regression to identify which discounts increased basket size.\nSkills: Python, SQL, Power BI, Excel.",
+    "Miguel Santos worked in my team from March 2023 to June 2026. She independently designed and maintained our weekly sales reporting pipeline, including validation checks that caught duplicate transactions before they reached finance. She led the analysis of our 2025 festive promotions and presented her findings to the regional leadership group, who adopted two of her recommendations. She followed our data privacy policy carefully when handling customer loyalty data.",
+    "Bachelor of Science (Statistics), Visayan Coastal University.\nRegression Analysis - Distinction.\nDatabase Systems - Credit.\nStatistical Computing in R - Distinction."
+   ],
+   "C02": [
+    "Junior Data Analyst, Harbour Grocers, Cebu, Vietnam (2024-2026).\nAssisted senior analysts under the supervision of the team lead to clean call-centre datasets and remove duplicates.\nProduced weekly Excel reports on call handling times for the operations manager.\nSupported the migration of reports to Tableau.\nSkills: Excel, SQL, Tableau.",
+    "BSc Mathematics, Southbank Institute of Technology.\nProbability and Statistics - 1.5 (Very Good).\nIntroduction to Data Science - 1.75 (Good).\nResearch project: analysed rainfall trends in Cebu using linear regression."
+   ],
+   "C03": [
+    "Master of Data Science, Kandy College of Commerce.\nData Wrangling - High Distinction.\nData Visualisation - Distinction.\nData Governance and Ethics - High Distinction.",
+    "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team. Graded High Distinction; the client asked for the dashboard to be handed over.",
+    "Customer Service Assistant (casual), Ceylon Freight Holdings, Melbourne (2024-2026).\nCoordinated shift handovers with a team of eight and trained two new starters on the register.\nResolved customer complaints and explained refund policies to customers.\nSkills: Python, pandas, SQL, Tableau, communication."
+   ],
+   "C04": [
+    "Senior Accountant, Previous Employer, Colombo, Australia (2019-2026).\nPrepared monthly management reports and variance analysis for the executive team.\nReconciled ledgers across four subsidiaries and audited data accuracy before month-end close.\nLed a team of three accounts officers.\nCompleted an online course in SQL in 2025.\nSkills: Excel, SQL, SAP.",
+    "Jordan Blake has reported to me since 2019. She reconciled intercompany ledgers every month with exceptional accuracy and presented our quarterly results to the board. She managed three accounts officers and mentored them on month-end procedures."
+   ],
+   "C05": [
+    "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork."
+   ],
+   "C06": [
+    "Analytics Manager, Bayside Council, Nairobi, Australia (2014-2020).\nLed a team of six analysts and set the analytics strategy for the fraud unit.\nDesigned the fraud detection data pipeline and data warehouse.\nPresented monthly fraud trend reports to the executive committee.\nSkills: SQL, Python, SAS.",
+    "Liam O'Connor established our fraud analytics function and was accountable for all fraud reporting to the regulator. She ensured our customer data handling complied with the central bank's data protection rules."
+   ],
+   "C07": [
+    "Bachelor of Commerce (Business Analytics), Eastlake Institute of Technology.\nBusiness Analytics - Distinction.\nDatabase Design - Credit.\nData Visualisation - High Distinction.",
+    "Data Analyst Intern, Qinghe Logistics Tech, Melbourne (Nov 2025 - Feb 2026).\nBuilt Power BI dashboards on library usage under the guidance of the senior analyst.\nWrote SQL queries to extract visitor counts from the booking system.\nPrepared a summary report for the library services manager.\nSkills: SQL, Power BI, Excel."
+   ],
+   "C08": [
+    "Data Engineer, Nirmal Retail Analytics, Hangzhou, India (2022-2026).\nDesigned and built ETL pipelines in Python and SQL that ingest 20 million shipment records a day into the data warehouse.\nImplemented automated data quality checks that flag missing values and schema changes.\nAnonymised customer addresses to meet the company's data compliance policy.\nSkills: Python, SQL, Spark, Airflow.",
+    "Priya Raghunathan owned our shipment data platform and designed the validation framework that reduced reporting errors by a third. He mentored two graduate engineers."
+   ]
+  },
+  "J02": {
+   "C01": [
+    "Data Analyst, Lumen BPO Services, Mumbai, Philippines (2023-2026).\nBuilt SQL queries and Python scripts to automate the weekly sales extraction from the point-of-sale database.\nDesigned a Power BI dashboard used by 14 regional managers to track store performance.\nAnalysed promotion data with regression to identify which discounts increased basket size.\nSkills: Python, SQL, Power BI, Excel.",
+    "Miguel Santos worked in my team from March 2023 to June 2026. She independently designed and maintained our weekly sales reporting pipeline, including validation checks that caught duplicate transactions before they reached finance. She led the analysis of our 2025 festive promotions and presented her findings to the regional leadership group, who adopted two of her recommendations. She followed our data privacy policy carefully when handling customer loyalty data.",
+    "Bachelor of Science (Statistics), Visayan Coastal University.\nRegression Analysis - Distinction.\nDatabase Systems - Credit.\nStatistical Computing in R - Distinction."
+   ],
+   "C02": [
+    "Junior Data Analyst, Harbour Grocers, Cebu, Vietnam (2024-2026).\nAssisted senior analysts under the supervision of the team lead to clean call-centre datasets and remove duplicates.\nProduced weekly Excel reports on call handling times for the operations manager.\nSupported the migration of reports to Tableau.\nSkills: Excel, SQL, Tableau.",
+    "BSc Mathematics, Southbank Institute of Technology.\nProbability and Statistics - 1.5 (Very Good).\nIntroduction to Data Science - 1.75 (Good).\nResearch project: analysed rainfall trends in Cebu using linear regression."
+   ],
+   "C03": [
+    "Master of Data Science, Kandy College of Commerce.\nData Wrangling - High Distinction.\nData Visualisation - Distinction.\nData Governance and Ethics - High Distinction.",
+    "Capstone project: built a Python pipeline to collect and validate open council parking data, then analysed occupancy trends and presented a dashboard and written report to the council's transport team. Graded High Distinction; the client asked for the dashboard to be handed over.",
+    "Customer Service Assistant (casual), Ceylon Freight Holdings, Melbourne (2024-2026).\nCoordinated shift handovers with a team of eight and trained two new starters on the register.\nResolved customer complaints and explained refund policies to customers.\nSkills: Python, pandas, SQL, Tableau, communication."
+   ],
+   "C04": [
+    "Senior Accountant, Previous Employer, Colombo, Australia (2019-2026).\nPrepared monthly management reports and variance analysis for the executive team.\nReconciled ledgers across four subsidiaries and audited data accuracy before month-end close.\nLed a team of three accounts officers.\nCompleted an online course in SQL in 2025.\nSkills: Excel, SQL, SAP.",
+    "Jordan Blake has reported to me since 2019. She reconciled intercompany ledgers every month with exceptional accuracy and presented our quarterly results to the board. She managed three accounts officers and mentored them on month-end procedures."
+   ],
+   "C05": [
+    "Skills: Python, SQL, R, Tableau, Power BI, Looker, machine learning, regression, dashboards, data governance, ETL, pipelines, stakeholder management, data quality, reporting, presentations, teamwork."
+   ],
+   "C06": [
+    "Analytics Manager, Bayside Council, Nairobi, Australia (2014-2020).\nLed a team of six analysts and set the analytics strategy for the fraud unit.\nDesigned the fraud detection data pipeline and data warehouse.\nPresented monthly fraud trend reports to the executive committee.\nSkills: SQL, Python, SAS.",
+    "Liam O'Connor established our fraud analytics function and was accountable for all fraud reporting to the regulator. She ensured our customer data handling complied with the central bank's data protection rules."
+   ],
+   "C07": [
+    "Bachelor of Commerce (Business Analytics), Eastlake Institute of Technology.\nBusiness Analytics - Distinction.\nDatabase Design - Credit.\nData Visualisation - High Distinction.",
+    "Data Analyst Intern, Qinghe Logistics Tech, Melbourne (Nov 2025 - Feb 2026).\nBuilt Power BI dashboards on library usage under the guidance of the senior analyst.\nWrote SQL queries to extract visitor counts from the booking system.\nPrepared a summary report for the library services manager.\nSkills: SQL, Power BI, Excel."
+   ],
+   "C08": [
+    "Data Engineer, Nirmal Retail Analytics, Hangzhou, India (2022-2026).\nDesigned and built ETL pipelines in Python and SQL that ingest 20 million shipment records a day into the data warehouse.\nImplemented automated data quality checks that flag missing values and schema changes.\nAnonymised customer addresses to meet the company's data compliance policy.\nSkills: Python, SQL, Spark, Airflow.",
+    "Priya Raghunathan owned our shipment data platform and designed the validation framework that reduced reporting errors by a third. He mentored two graduate engineers."
+   ]
+  }
+ }
+}

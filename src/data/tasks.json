@@ -1,0 +1,74 @@
+{
+  "occupation": {
+    "code": "223231",
+    "title": "Data Analyst",
+    "classification": "OSCA 2024 v1.0 (ABS)",
+    "skill_level": 1,
+    "url": "https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/2024-version-1-0/browse-classification/2/22/223/2232/223231"
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "label": "Sets up processes to securely collect, store, process and validate data",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["pipeline", "etl", "ingest", "data collection", "collected data", "database", "data warehouse", "automated extraction", "set up processes"]
+    },
+    {
+      "id": "T2",
+      "label": "Evaluates the accuracy and reliability of data",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["data quality", "cleaning", "cleaned", "validation", "validated", "reconcil", "duplicates", "missing values", "accuracy", "audit"]
+    },
+    {
+      "id": "T3",
+      "label": "Analyses and interprets data to produce statistics describing trends and patterns, solve problems and answer data queries",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["analysed", "analyzed", "analysis", "regression", "statistical", "trends", "forecast", "hypothesis", "a/b test", "churn", "segmentation"]
+    },
+    {
+      "id": "T4",
+      "label": "Applies data analytics and visualisation techniques to gain business insights",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["dashboard", "power bi", "tableau", "visualisation", "visualization", "looker", "charts", "insight"]
+    },
+    {
+      "id": "T5",
+      "label": "Prepares presentations and reports to communicate findings and support decision-making",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["report", "presented", "presentation", "briefing", "recommendation", "executive", "findings"]
+    },
+    {
+      "id": "T6",
+      "label": "Follows data management processes so data is used ethically and complies with governance standards",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["governance", "privacy", "compliance", "anonymis", "anonymiz", "data policy", "ethics", "gdpr", "consent"]
+    },
+    {
+      "id": "T7",
+      "label": "Writes custom scripts and code to conduct analytical tasks",
+      "kind": "osca_task",
+      "source": "OSCA 223231",
+      "keywords": ["python", "sql", "r script", "pandas", "script", "automated", "code", "query", "queries"]
+    },
+    {
+      "id": "C1",
+      "label": "Communicates with stakeholders and translates their needs into analysis",
+      "kind": "core_competency",
+      "source": "Platform-defined core competency",
+      "keywords": ["stakeholder", "client", "customer", "manager", "requirements", "liaised", "explained"]
+    },
+    {
+      "id": "C2",
+      "label": "Works collaboratively in a team and coordinates shared work",
+      "kind": "core_competency",
+      "source": "Platform-defined core competency",
+      "keywords": ["team", "collaborat", "coordinated", "roster", "shift", "mentored", "trained"]
+    }
+  ]
+}
