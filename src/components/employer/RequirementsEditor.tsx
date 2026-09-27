@@ -7,7 +7,7 @@ import { Rec } from "../ui/Rec";
 
 const WEIGHTS = [0.5, 1, 1.5, 2];
 
-export function RequirementsEditor({ requirements, onChange }: { requirements: Requirement[]; onChange: (next: Requirement[]) => void }) {
+export function RequirementsEditor({ requirements, onChange, compact = false }: { requirements: Requirement[]; onChange: (next: Requirement[]) => void; compact?: boolean }) {
   const byId = new Map(requirements.map((r) => [r.task_id, r]));
 
   const set = (taskId: string, patch: Partial<Requirement> | null) => {
@@ -22,7 +22,7 @@ export function RequirementsEditor({ requirements, onChange }: { requirements: R
       {taskList.map((t) => {
         const req = byId.get(t.id);
         return (
-          <div key={t.id} className={cn("grid gap-3 py-3 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-center", !req && "opacity-60")}>
+          <div key={t.id} className={cn("grid gap-3 py-3", compact ? "gap-2" : "sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-center", !req && "opacity-60")}>
             <label className="flex min-w-0 items-start gap-3">
               <input
                 type="checkbox"

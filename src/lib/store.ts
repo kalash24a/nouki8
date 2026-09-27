@@ -1,12 +1,14 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import type { Job } from "./engine/types";
 import type { Attempt } from "./engine/worksample";
 
 const KEY = "talentbridge:v1";
 
-type State = { attempts: Attempt[]; revealed: string[] };
-const EMPTY: State = { attempts: [], revealed: [] };
+export type PostedJob = Job & { posted: true; created: string; min_aqf: number | null };
+type State = { attempts: Attempt[]; revealed: string[]; postedJobs: PostedJob[] };
+const EMPTY: State = { attempts: [], revealed: [], postedJobs: [] };
 
 let state: State = EMPTY;
 let loaded = false;
@@ -67,7 +69,15 @@ export const actions = {
   },
   resetCandidate(cid: string) {
     load();
-    emit({ attempts: state.attempts.filter((a) => a.candidate_id !== cid), revealed: state.revealed.filter((r) => r !== cid) });
+    emit({ ...state, attempts: state.attempts.filter((a) => a.candidate_id !== cid), revealed: state.revealed.filter((r) => r !== cid) });
+  },
+  postJob(job: PostedJob) {
+    load();
+    emit({ ...state, postedJobs: [...state.postedJobs.filter((j) => j.id !== job.id), job] });
+  },
+  removeJob(id: string) {
+    load();
+    emit({ ...state, postedJobs: state.postedJobs.filter((j) => j.id !== id) });
   },
   resetAll() {
     emit(EMPTY);

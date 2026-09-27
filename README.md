@@ -7,7 +7,7 @@ React version of the Talent Bridge prototype (MentorME Futura Remix, Track 1). N
 ```bash
 npm install
 npm run dev            # http://localhost:3000
-npm run verify         # typecheck, lint, 26 tests, production build
+npm run verify         # typecheck, lint, 36 tests, production build
 ```
 
 Optional, to use Claude:
@@ -26,6 +26,7 @@ Without a key everything still works: extraction uses keyword rules, viva questi
 |---|---|
 | `/` | The problem (OECD graduate employment gap, interactive), the three steps, and evaluation numbers computed at build time |
 | `/employer` | Blind shortlist beside a detail panel: match ring, why they match, how the score is built, gaps to ask about, redacted evidence, qualification and grades in Australian terms, reveal identity. Editable target levels re-rank the list live. Identity-swap fairness test |
+| `/employer/dashboard` | The whole pool against the role: a filter panel (minimum match, must-meet skills, gaps allowed, qualification, grade average, defended work sample, evidence quality, editable targets), an aggregate profile of every shown candidate against your targets, a cumulative curve of how many clear each match score, then the heatmap, score build, coverage, pipeline, evidence and qualification charts. "Post a job" turns a pasted ad into requirements and suggested filters |
 | `/candidates` → `/candidates/[id]` | Candidate passports, with every task backed by exact quotes, tiers and level caps |
 | `/work-sample/[id]` | Gaps → seeded task → viva → reviewer → result and Open Badges 3.0 portfolio card |
 | `/workforce` | Hire-ready vs one gap away, coverage per requirement, the planning signal, evidence quality |
@@ -49,6 +50,10 @@ Built on React's `<ViewTransition>` following Vercel's `vercel-react-view-transi
 - Match ring, meters and counters animate on change; everything respects `prefers-reduced-motion`
 
 Recipes are in `src/app/globals.css`. View transitions need Chromium 125+, Safari 18.2+ or Firefox 144+; other browsers simply don't animate.
+
+## Posting a job
+
+Paste a job ad on the dashboard and `src/lib/engine/posting.ts` maps it to the OSCA Data Analyst tasks using each task's keywords, sentence by sentence. The title and opening line set seniority (junior, mid or senior, which sets the base target level), words like "must" or "strong" raise the weight, "nice to have" or "familiarity" drop the target to Foundation and halve the weight, and a required degree becomes an AQF filter. Every requirement shows the sentence it came from, and the employer can adjust anything before posting. Posted jobs are saved in the browser and appear on the shortlist, dashboard, workforce and work-sample pages. It's rule-based on purpose: every requirement can be traced and checked.
 
 ## Qualifications in Australian terms
 

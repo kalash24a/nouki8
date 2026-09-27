@@ -1,7 +1,8 @@
 "use client";
 
 import { startTransition, useMemo, useState, ViewTransition } from "react";
-import { candidates, jobs, taskShort } from "@/lib/engine/data";
+import { candidates, taskShort } from "@/lib/engine/data";
+import { useJobs } from "@/lib/useJobs";
 import { rank } from "@/lib/engine/matching";
 import { qualificationFor } from "@/lib/engine/qualifications";
 import type { Requirement } from "@/lib/engine/types";
@@ -16,6 +17,7 @@ import { CandidateDetail } from "./CandidateDetail";
 import { FairnessPanel } from "./FairnessPanel";
 import { CapIcon, qualificationLine } from "./QualificationPanel";
 import { EmployerTabs } from "./EmployerDashboard";
+import { JobTabs } from "./JobTabs";
 import { RequirementsEditor } from "./RequirementsEditor";
 
 const byId = new Map(candidates.map((c) => [c.id, c]));
@@ -23,14 +25,16 @@ const byId = new Map(candidates.map((c) => [c.id, c]));
 export function EmployerView({ initialJob, initialCandidate }: { initialJob?: string; initialCandidate?: string }) {
   const passports = usePassports();
   const { attempts } = useAppState();
-  const [jobId, setJobId] = useState(jobs.some((j) => j.id === initialJob) ? initialJob! : jobs[0].id);
+  const jobs = useJobs();
+  const [jobId, setJobId] = useState(initialJob ?? jobs[0].id);
   const [edits, setEdits] = useState<Record<string, Requirement[]>>({});
   const [selected, setSelected] = useState<string | null>(byId.has(initialCandidate ?? "") ? initialCandidate! : null);
   const [onlyStrong, setOnlyStrong] = useState(false);
   const [editing, setEditing] = useState(false);
 
-  const baseJob = jobs.find((j) => j.id === jobId)!;
-  const job = useMemo(() => ({ ...baseJob, requirements: edits[jobId] ?? baseJob.requirements }), [baseJob, edits, jobId]);
+  const baseJob = jobs.find((j) => j.id === jobId) ?? jobs[0];
+  const activeId = baseJob.id;
+  const job = useMemo(() => ({ ...baseJob, requirements: edits[activeId] ?? baseJob.requirements }), [baseJob, edits, activeId]);
   const ranked = useMemo(() => rank(job, [...passports.values()]), [job, passports]);
   const shown = onlyStrong ? ranked.filter((m) => m.score >= 60) : ranked;
   const current = ranked.find((m) => m.candidate_id === selected) ?? ranked[0];
@@ -40,7 +44,7 @@ export function EmployerView({ initialJob, initialCandidate }: { initialJob?: st
   const defended = candidates.filter((c) => countingAttempt(attempts, c.id)?.review?.defended).length;
 
   const choose = (cid: string) => startTransition(() => setSelected(cid));
-  const updateReqs = (next: Requirement[]) => startTransition(() => setEdits((e) => ({ ...e, [jobId]: next })));
+  const updateReqs = (next: Requirement[]) => startTransition(() => setEdits((e) => ({ ...e, [activeId]: next })));
   const switchJob = (id: string) => {
     window.history.replaceState(null, "", `?job=${id}`);
     startTransition(() => {
@@ -55,22 +59,12 @@ export function EmployerView({ initialJob, initialCandidate }: { initialJob?: st
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <Badge tone="neutral">Employer</Badge>
-            <EmployerTabs active="shortlist" jobId={jobId} />
+            <EmployerTabs active="shortlist" jobId={activeId} />
           </div>
           <h1 className="mt-2 text-4xl sm:text-5xl">{job.title}</h1>
           <p className="mt-1 text-foreground-muted">{job.employer} · Melbourne</p>
-          <div role="tablist" aria-label="Role" className="mt-4 inline-flex rounded-sm border bg-surface-sunken p-0.5">
-            {jobs.map((j) => (
-              <button
-                key={j.id}
-                role="tab"
-                aria-selected={j.id === jobId}
-                onClick={() => switchJob(j.id)}
-                className={cn("min-h-9 rounded-xs px-3 text-sm transition-colors", j.id === jobId ? "bg-surface font-medium shadow-card" : "text-foreground-muted hover:text-foreground")}
-              >
-                {j.title}
-              </button>
-            ))}
+          <div className="mt-4">
+            <JobTabs jobs={jobs} activeId={activeId} onSelect={switchJob} postHref={`/employer/dashboard?job=${activeId}&post=1`} />
           </div>
         </div>
         <dl className="grid grid-cols-3 items-start gap-6 text-right">
@@ -158,7 +152,7 @@ export function EmployerView({ initialJob, initialCandidate }: { initialJob?: st
                 </p>
               </div>
               <div className="flex gap-2">
-                {edits[jobId] && <Button variant="ghost" size="sm" onClick={() => startTransition(() => setEdits(({ [jobId]: _, ...rest }) => rest))}>Reset</Button>}
+                {edits[activeId] && <Button variant="ghost" size="sm" onClick={() => startTransition(() => setEdits(({ [activeId]: _, ...rest }) => rest))}>Reset</Button>}
                 <Button variant="secondary" size="sm" onClick={() => setEditing((v) => !v)} aria-expanded={editing}>
                   {editing ? "Done" : `Edit ${job.requirements.length} requirements`}
                 </Button>

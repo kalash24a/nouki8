@@ -1,7 +1,8 @@
 "use client";
 
 import { startTransition, useMemo, useState, ViewTransition } from "react";
-import { jobs, taskLabel, taskShort } from "@/lib/engine/data";
+import { taskLabel, taskShort } from "@/lib/engine/data";
+import { useJobs } from "@/lib/useJobs";
 import { MAPS_TO, TEMPLATE_ID } from "@/lib/engine/generator";
 import { rank } from "@/lib/engine/matching";
 import { LEVEL_LABEL } from "@/lib/engine/types";
@@ -22,8 +23,9 @@ const BAND_FILL: Record<(typeof BANDS)[number], string> = {
 
 export function WorkforceView() {
   const passports = usePassports();
+  const jobs = useJobs();
   const [jobId, setJobId] = useState(jobs[0].id);
-  const job = jobs.find((j) => j.id === jobId)!;
+  const job = jobs.find((j) => j.id === jobId) ?? jobs[0];
   const ranked = useMemo(() => rank(job, [...passports.values()]), [job, passports]);
 
   const gaps = new Map(ranked.map((m) => [m.candidate_id, m.results.filter((r) => r.status !== "meets")]));

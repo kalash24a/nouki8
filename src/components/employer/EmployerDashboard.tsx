@@ -1,18 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { startTransition, useEffect, useMemo, useRef, useState, ViewTransition } from "react";
-import { jobs, taskLabel, taskShort } from "@/lib/engine/data";
+import { startTransition, useMemo, useState, ViewTransition } from "react";
+import { candidates, taskLabel, taskShort } from "@/lib/engine/data";
+import { activeFilters, applyFilters, NO_FILTERS, type Filters, type PoolRow } from "@/lib/engine/filters";
 import { rank } from "@/lib/engine/matching";
 import { AU_CUTOFFS, AU_SHORT, qualificationFor } from "@/lib/engine/qualifications";
-import { LEVEL_LABEL, type Band, type MatchResult, type Status } from "@/lib/engine/types";
+import { LEVEL_LABEL, type Band, type Job, type MatchResult, type Requirement, type Status } from "@/lib/engine/types";
 import { countingAttempt } from "@/lib/engine/worksample";
-import { useAppState } from "@/lib/store";
+import { actions, useAppState, type PostedJob } from "@/lib/store";
+import { isPosted, useJobs } from "@/lib/useJobs";
 import { usePassports } from "@/lib/usePassports";
 import { cn } from "@/lib/cn";
-import { Arrow, ButtonLink } from "../ui/Button";
+import { Arrow, Button, ButtonLink } from "../ui/Button";
+import { ChartHead, useTweened } from "../ui/chart";
 import { CountUp, MatchRing } from "../ui/Motion";
 import { Badge, Card, Rec } from "../ui/Rec";
+import { FilterPanel } from "./FilterPanel";
+import { JobTabs } from "./JobTabs";
+import { CumulativeCurve, PoolRadar, RangeBullets } from "./PoolCharts";
+import { PostJobPanel } from "./PostJobPanel";
 import { CapIcon, GradeChip, qualificationLine } from "./QualificationPanel";
 
 const SERIES = ["bg-series-1", "bg-series-2", "bg-series-3", "bg-series-4", "bg-series-5", "bg-series-6", "bg-series-7"];
@@ -41,34 +48,6 @@ const EVIDENCE: { key: EvidenceKey; label: string; stroke: string; fill: string 
   { key: "None", label: "No evidence", stroke: "stroke-surface-strong", fill: "bg-surface-strong" },
 ];
 
-function reduced() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-function useTweened(target: number[], duration = 650) {
-  const [shown, setShown] = useState(() => target.map(() => 0));
-  const from = useRef<number[]>(target.map(() => 0));
-  const key = target.join(",");
-  useEffect(() => {
-    const goal = key.split(",").map(Number);
-    const origin = goal.map((_, i) => from.current[i] ?? 0);
-    const d = reduced() ? 0 : duration;
-    const start = performance.now();
-    let frame = 0;
-    const tick = (now: number) => {
-      const t = d ? Math.min(1, (now - start) / d) : 1;
-      const e = 1 - Math.pow(1 - t, 3);
-      const next = goal.map((g, i) => origin[i] + (g - origin[i]) * e);
-      setShown(next);
-      if (t < 1) frame = requestAnimationFrame(tick);
-      else from.current = goal;
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [key, duration]);
-  return shown;
-}
-
 export function EmployerTabs({ active, jobId }: { active: "shortlist" | "dashboard"; jobId: string }) {
   const tabs = [
     { id: "shortlist", label: "Shortlist", href: `/employer?job=${jobId}`, types: ["nav-back"] },
@@ -91,21 +70,41 @@ export function EmployerTabs({ active, jobId }: { active: "shortlist" | "dashboa
   );
 }
 
-export function EmployerDashboard({ initialJob }: { initialJob?: string }) {
+export function EmployerDashboard({ initialJob, initialPost = false }: { initialJob?: string; initialPost?: boolean }) {
   const passports = usePassports();
   const { attempts } = useAppState();
-  const [jobId, setJobId] = useState(jobs.some((j) => j.id === initialJob) ? initialJob! : jobs[0].id);
+  const jobs = useJobs();
+  const [jobId, setJobId] = useState(initialJob ?? jobs[0].id);
+  const [edits, setEdits] = useState<Record<string, Requirement[]>>({});
+  const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const [focus, setFocus] = useState<string | null>(null);
-  const job = jobs.find((j) => j.id === jobId)!;
-  const ranked = useMemo(() => rank(job, [...passports.values()]), [job, passports]);
-  const current = ranked.find((m) => m.candidate_id === focus) ?? ranked[0];
+  const [posting, setPosting] = useState(initialPost);
 
-  const pool = ranked.length;
+  const baseJob = jobs.find((j) => j.id === jobId) ?? jobs[0];
+  const activeId = baseJob.id;
+  const job = useMemo(() => ({ ...baseJob, requirements: edits[activeId] ?? baseJob.requirements }), [baseJob, edits, activeId]);
+  const tasks = job.requirements.map((r) => r.task_id);
+
+  const defended = useMemo(() => new Set(candidates.filter((c) => countingAttempt(attempts, c.id)?.review?.defended).map((c) => c.id)), [attempts]);
+  const toRows = (results: MatchResult[]): PoolRow[] =>
+    results.map((result) => ({ result, qualification: qualificationFor(result.candidate_id), defended: defended.has(result.candidate_id) }));
+
+  const all = useMemo(() => rank(job, [...passports.values()]), [job, passports]);
+  const rows = toRows(all);
+  const { kept, excluded } = applyFilters(rows, filters, tasks);
+  const eligible = applyFilters(rows, { ...filters, minScore: 0 }, tasks).kept.map((r) => r.result);
+  const ranked = kept.map((r) => r.result);
+  const keptIds = new Set(ranked.map((m) => m.candidate_id));
+  const current = ranked.find((m) => m.candidate_id === focus) ?? ranked[0];
+  const activeCount = activeFilters(filters, tasks);
+
+  const pool = all.length;
+  const shown = ranked.length;
   const ready = ranked.filter((m) => m.met === m.total).length;
   const oneGap = ranked.filter((m) => m.total - m.met === 1).length;
   const scores = ranked.map((m) => m.score).sort((a, b) => a - b);
-  const median = pool % 2 ? scores[(pool - 1) / 2] : (scores[pool / 2 - 1] + scores[pool / 2]) / 2;
-  const defended = ranked.filter((m) => countingAttempt(attempts, m.candidate_id)?.review?.defended).length;
+  const median = !shown ? 0 : shown % 2 ? scores[(shown - 1) / 2] : (scores[shown / 2 - 1] + scores[shown / 2]) / 2;
+  const defendedShown = ranked.filter((m) => defended.has(m.candidate_id)).length;
 
   const switchJob = (id: string) => {
     window.history.replaceState(null, "", `?job=${id}`);
@@ -115,108 +114,180 @@ export function EmployerDashboard({ initialJob }: { initialJob?: string }) {
     });
   };
   const choose = (cid: string) => startTransition(() => setFocus(cid));
+  const patch = (p: Partial<Filters>) => startTransition(() => setFilters((f) => ({ ...f, ...p })));
+  const countFor = (requirements: Requirement[], f: Filters) =>
+    applyFilters(toRows(rank({ ...job, requirements }, [...passports.values()])), f, requirements.map((r) => r.task_id)).kept.length;
+
+  const onPosted = (posted: PostedJob, f: Filters) => {
+    actions.postJob(posted);
+    setPosting(false);
+    window.history.replaceState(null, "", `?job=${posted.id}`);
+    startTransition(() => {
+      setJobId(posted.id);
+      setFilters(f);
+      setFocus(null);
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const removePosted = () => {
+    actions.removeJob(activeId);
+    switchJob(jobs[0].id);
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge tone="neutral">Employer</Badge>
-            <EmployerTabs active="dashboard" jobId={jobId} />
-          </div>
-          <h1 className="mt-3 text-4xl sm:text-5xl">What the pool looks like for this role</h1>
-          <p className="mt-1 text-foreground-muted">
-            {job.title} · {job.employer} · every candidate still blind
+      <div>
+        <div className="flex flex-wrap items-center gap-3">
+          <Badge tone="neutral">Employer</Badge>
+          <EmployerTabs active="dashboard" jobId={activeId} />
+        </div>
+        <h1 className="mt-3 text-4xl sm:text-5xl">What the pool looks like for this role</h1>
+        <p className="mt-1 text-foreground-muted">
+          {job.title} · {job.employer} · every candidate still blind
+          {isPosted(baseJob) && (
+            <button type="button" onClick={removePosted} className="ml-3 text-sm text-foreground-muted underline underline-offset-4 hover:text-destructive">
+              Remove this posted job
+            </button>
+          )}
+        </p>
+        <div className="mt-4">
+          <JobTabs jobs={jobs} activeId={activeId} onSelect={switchJob} onPost={() => setPosting(true)} />
+        </div>
+      </div>
+
+      {posting && (
+        <div className="mt-6">
+          <PostJobPanel onSave={onPosted} onClose={() => setPosting(false)} countFor={countFor} total={pool} />
+        </div>
+      )}
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-[19rem_minmax(0,1fr)]">
+        <aside className="lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:self-start lg:overflow-y-auto lg:rounded-lg">
+          <FilterPanel
+            job={job}
+            filters={filters}
+            onChange={patch}
+            onReset={() => startTransition(() => setFilters(NO_FILTERS))}
+            active={activeCount}
+            shown={shown}
+            total={pool}
+            excluded={excluded}
+            edited={!!edits[activeId]}
+            onRequirements={(next) => startTransition(() => setEdits((e) => ({ ...e, [activeId]: next })))}
+            onResetTargets={() => startTransition(() => setEdits(({ [activeId]: _, ...rest }) => rest))}
+          />
+        </aside>
+
+        <div className="min-w-0 space-y-6">
+          <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-5">
+            <Kpi label="Shown after filters" value={shown} of={pool} />
+            <Kpi label="Meet every requirement" value={ready} of={shown || 1} tone="positive" />
+            <Kpi label="One gap away" value={oneGap} of={shown || 1} tone="ochre" />
+            <Kpi label="Median match" value={median} suffix="%" of={100} />
+            <Kpi label="Work samples defended" value={defendedShown} of={shown || 1} />
+          </dl>
+
+          <Card className="min-w-0 p-5 sm:p-7">
+            <ChartHead
+              title="Every shown candidate against your targets"
+              note={`One view of all ${shown} candidates your filters keep, so you don't need to open them one by one. Levels are what the evidence supports.`}
+            />
+            {shown ? (
+              <div className="mt-4 grid items-center gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+                <PoolRadar ranked={ranked} job={job} />
+                <RangeBullets ranked={ranked} job={job} />
+              </div>
+            ) : (
+              <Empty excluded={excluded} onClear={() => startTransition(() => setFilters(NO_FILTERS))} />
+            )}
+          </Card>
+
+          <Card className="min-w-0 p-5 sm:p-7">
+            <ChartHead
+              title="How many candidates clear each match score"
+              note="A cumulative count: read any point as ‘this many candidates score at least this much’. Drag the slider or click the chart to set your minimum."
+            />
+            <CumulativeCurve pool={all} eligible={eligible} kept={keptIds} minScore={filters.minScore} onMinScore={(v) => patch({ minScore: v })} />
+          </Card>
+
+          {current && (
+            <>
+              <div className="grid gap-6 2xl:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="Candidates against your requirements" note="Each cell is the level the evidence supports, coloured by whether it meets your target. Pick a row to compare it with your targets." />
+                  <Heatmap ranked={ranked} job={job} current={current.candidate_id} onPick={choose} />
+                </Card>
+
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="One candidate against your targets" note="Dashed outline is what you asked for, the filled shape is what the evidence shows." />
+                  <label className="mt-4 flex items-center gap-2 text-sm">
+                    <span className="text-foreground-muted">Candidate</span>
+                    <select value={current.candidate_id} onChange={(e) => choose(e.target.value)} className="min-h-9 rounded-sm border bg-surface px-2 text-sm">
+                      {ranked.map((m, i) => (
+                        <option key={m.candidate_id} value={m.candidate_id}>
+                          #{i + 1} Candidate {m.candidate_id} · {Math.round(m.score)}%
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <Radar result={current} />
+                  <FocusSummary result={current} jobId={activeId} />
+                </Card>
+              </div>
+
+              <div className="grid gap-6 xl:grid-cols-2">
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="How each match score is built" note="Each segment is one requirement's contribution, weighted and discounted by evidence strength. The empty part is what's still unproven." />
+                  <ScoreBuild ranked={ranked} job={job} onPick={choose} current={current.candidate_id} />
+                </Card>
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="Coverage of each requirement" note="How many shown candidates meet each target, fall short, or have no trusted evidence yet." />
+                  <Coverage ranked={ranked} job={job} />
+                </Card>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="Hiring pipeline" note="From the whole pool to hire-ready now." />
+                  <Funnel all={all} ranked={ranked} />
+                </Card>
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="Strength of evidence" note="Across every shown candidate and requirement." />
+                  <EvidenceDonut ranked={ranked} />
+                </Card>
+                <Card className="min-w-0 p-5 sm:p-7">
+                  <ChartHead title="Qualifications in Australian terms" note="GPA on the 7-point scale, from each transcript. Indicative, not a formal assessment." />
+                  <Qualifications ranked={ranked} current={current.candidate_id} onPick={choose} />
+                </Card>
+              </div>
+            </>
+          )}
+
+          <p className="text-xs text-foreground-muted">
+            Charts follow your filters and targets. Name, country, university and employers stay hidden here, as on the shortlist. All candidates are fictional.
           </p>
         </div>
-        <div role="tablist" aria-label="Role" className="inline-flex rounded-sm border bg-surface-sunken p-0.5">
-          {jobs.map((j) => (
-            <button
-              key={j.id}
-              role="tab"
-              aria-selected={j.id === jobId}
-              onClick={() => switchJob(j.id)}
-              className={cn("min-h-9 rounded-xs px-3 text-sm transition-colors", j.id === jobId ? "bg-surface font-medium shadow-card" : "text-foreground-muted hover:text-foreground")}
-            >
-              {j.title}
-            </button>
-          ))}
-        </div>
       </div>
-
-      <dl className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
-        <Kpi label="Candidates in pool" value={pool} />
-        <Kpi label="Meet every requirement" value={ready} of={pool} tone="positive" />
-        <Kpi label="One gap away" value={oneGap} of={pool} tone="ochre" />
-        <Kpi label="Median match" value={median} suffix="%" of={100} />
-        <Kpi label="Work samples defended" value={defended} of={pool} />
-      </dl>
-
-      <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="Candidates against your requirements" note="Each cell is the level the evidence supports, coloured by whether it meets your target. Pick a row to compare it with your targets." />
-          <Heatmap ranked={ranked} job={job} current={current.candidate_id} onPick={choose} />
-        </Card>
-
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="One candidate against your targets" note="Dashed outline is what you asked for, the filled shape is what the evidence shows." />
-          <label className="mt-4 flex items-center gap-2 text-sm">
-            <span className="text-foreground-muted">Candidate</span>
-            <select
-              value={current.candidate_id}
-              onChange={(e) => choose(e.target.value)}
-              className="min-h-9 rounded-sm border bg-surface px-2 text-sm"
-            >
-              {ranked.map((m, i) => (
-                <option key={m.candidate_id} value={m.candidate_id}>
-                  #{i + 1} Candidate {m.candidate_id} · {Math.round(m.score)}%
-                </option>
-              ))}
-            </select>
-          </label>
-          <Radar result={current} />
-          <FocusSummary result={current} jobId={jobId} />
-        </Card>
-      </div>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="How each match score is built" note="Each segment is one requirement's contribution, weighted and discounted by evidence strength. The empty part is what's still unproven." />
-          <ScoreBuild ranked={ranked} job={job} onPick={choose} current={current.candidate_id} />
-        </Card>
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="Coverage of each requirement" note="How many of the pool meet each target, fall short, or have no trusted evidence yet." />
-          <Coverage ranked={ranked} job={job} />
-        </Card>
-      </div>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-3">
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="Hiring pipeline" note="From everyone in the pool to hire-ready now." />
-          <Funnel ranked={ranked} />
-        </Card>
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="Strength of evidence" note="Across every candidate and requirement for this role." />
-          <EvidenceDonut ranked={ranked} />
-        </Card>
-        <Card className="min-w-0 p-5 sm:p-7">
-          <ChartHead title="Qualifications in Australian terms" note="GPA on the 7-point scale, from each transcript. Indicative, not a formal assessment." />
-          <Qualifications ranked={ranked} current={current.candidate_id} onPick={choose} />
-        </Card>
-      </div>
-
-      <p className="mt-6 text-xs text-foreground-muted">
-        Charts use the role&apos;s default targets. Name, country, university and employers stay hidden here, as on the shortlist. All candidates are fictional.
-      </p>
     </div>
   );
 }
 
-function ChartHead({ title, note }: { title: string; note: string }) {
+function Empty({ excluded, onClear }: { excluded: { id: string; reasons: string[] }[]; onClear: () => void }) {
+  const counts = new Map<string, number>();
+  for (const e of excluded) for (const r of e.reasons) {
+    const key = r.replace(/\d+%?/g, "").replace(/\s+/g, " ").split(",")[0].trim();
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  const top = [...counts].sort((a, b) => b[1] - a[1]).slice(0, 3);
   return (
-    <div>
-      <h2 className="text-2xl">{title}</h2>
-      <p className="mt-1 max-w-prose text-sm text-foreground-muted">{note}</p>
+    <div className="mt-5 rounded-md border border-dashed px-5 py-8 text-center">
+      <p className="font-display text-xl">No candidate passes these filters</p>
+      {top.length > 0 && (
+        <p className="mt-2 text-sm text-foreground-muted">
+          Most often: {top.map(([k, n]) => `${k} (${n})`).join(" · ")}
+        </p>
+      )}
+      <Button variant="secondary" size="sm" className="mt-4" onClick={onClear}>Clear filters</Button>
     </div>
   );
 }
@@ -241,7 +312,7 @@ function Kpi({ label, value, of, suffix = "", tone }: { label: string; value: nu
   );
 }
 
-function Heatmap({ ranked, job, current, onPick }: { ranked: MatchResult[]; job: (typeof jobs)[number]; current: string; onPick: (cid: string) => void }) {
+function Heatmap({ ranked, job, current, onPick }: { ranked: MatchResult[]; job: Job; current: string; onPick: (cid: string) => void }) {
   return (
     <>
       <div className="relative -mx-2 mt-5 overflow-x-auto px-2">
@@ -377,7 +448,7 @@ function FocusSummary({ result, jobId }: { result: MatchResult; jobId: string })
   );
 }
 
-function ScoreBuild({ ranked, job, current, onPick }: { ranked: MatchResult[]; job: (typeof jobs)[number]; current: string; onPick: (cid: string) => void }) {
+function ScoreBuild({ ranked, job, current, onPick }: { ranked: MatchResult[]; job: Job; current: string; onPick: (cid: string) => void }) {
   const total = job.requirements.reduce((s, r) => s + r.weight, 0) || 1;
   return (
     <>
@@ -416,7 +487,7 @@ function ScoreBuild({ ranked, job, current, onPick }: { ranked: MatchResult[]; j
   );
 }
 
-function Coverage({ ranked, job }: { ranked: MatchResult[]; job: (typeof jobs)[number] }) {
+function Coverage({ ranked, job }: { ranked: MatchResult[]; job: Job }) {
   const rows = job.requirements
     .map((r) => {
       const counts = Object.fromEntries(STATUSES.map((s) => [s, 0])) as Record<Status, number>;
@@ -458,11 +529,11 @@ function Coverage({ ranked, job }: { ranked: MatchResult[]; job: (typeof jobs)[n
   );
 }
 
-function Funnel({ ranked }: { ranked: MatchResult[] }) {
-  const pool = ranked.length || 1;
+function Funnel({ all, ranked }: { all: MatchResult[]; ranked: MatchResult[] }) {
+  const pool = all.length || 1;
   const stages = [
-    { label: "In the pool", value: ranked.length },
-    { label: "Trusted evidence for at least one requirement", value: ranked.filter((m) => m.results.some((r) => r.status === "meets" || r.status === "below")).length },
+    { label: "In the pool", value: all.length },
+    { label: "Pass your filters", value: ranked.length },
     { label: "Meet half or more", value: ranked.filter((m) => m.met * 2 >= m.total).length },
     { label: "One gap away or ready", value: ranked.filter((m) => m.total - m.met <= 1).length },
     { label: "Hire-ready now", value: ranked.filter((m) => m.met === m.total).length },

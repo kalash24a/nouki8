@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { addTransitionType, startTransition, useMemo, useState, ViewTransition } from "react";
 import { assistGradeAndViva } from "./run";
-import { jobs } from "@/lib/engine/data";
+import { useJobs } from "@/lib/useJobs";
 import { generate, TEMPLATE_ID } from "@/lib/engine/generator";
 import type { RubricBand, Submission } from "@/lib/engine/grader";
 import type { Candidate } from "@/lib/engine/types";
@@ -36,10 +36,11 @@ export function WorkSampleFlow({ candidate, initialJob }: { candidate: Candidate
   const latest = mine.reduce<Attempt | undefined>((a, b) => (!a || b.attempt > a.attempt ? b : a), undefined);
   const counting = mine.filter((a) => a.review).sort((a, b) => b.attempt - a.attempt)[0];
 
-  const [jobId, setJobId] = useState(jobs.some((j) => j.id === initialJob) ? initialJob! : jobs[0].id);
+  const jobs = useJobs();
+  const [jobId, setJobId] = useState(initialJob ?? jobs[0].id);
   const [step, setStep] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
-  const job = jobs.find((j) => j.id === jobId)!;
+  const job = jobs.find((j) => j.id === jobId) ?? jobs[0];
   const current = step ?? stepFor(latest, !!counting);
   const active = current === 4 ? counting ?? latest : latest;
   const inst = useMemo(() => (active ? generate(active.seed) : null), [active]);

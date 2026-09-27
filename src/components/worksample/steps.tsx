@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { jobs, taskLabel, taskShort } from "@/lib/engine/data";
+import { taskLabel, taskShort } from "@/lib/engine/data";
+import { useJobs } from "@/lib/useJobs";
 import { VIVA_ANSWERS, sampleSubmission } from "@/lib/engine/demo";
 import { BRIEF, EXTRACT_DATE, MAPS_TO, MINUTES, RULES, TITLE, toCsv, type Instance } from "@/lib/engine/generator";
 import { BANDS, type Answers, type RubricBand, type Submission } from "@/lib/engine/grader";
@@ -23,6 +24,7 @@ export function GapsStep({ job, passport, onJob, onStart, attemptsUsed, maxAttem
   attemptsUsed: number;
   maxAttempts: number;
 }) {
+  const jobs = useJobs();
   const m = match(job, passport);
   const covered = m.to_prove.filter((t) => MAPS_TO.includes(t));
   const outside = m.to_prove.filter((t) => !MAPS_TO.includes(t));
